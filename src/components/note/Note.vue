@@ -1,7 +1,8 @@
 <template>
   <div id="js-note">
+    <el-input placeholder="请输入你要查询的标题" v-model="listName"></el-input>
     <el-collapse v-model="activeName">
-      <el-collapse-item v-for="item in Notes" :key="item.name" :title="item.title" :name="item.name">
+      <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
         <div>
           <mavon-editor defaultOpen="preview" :subfield="false" v-model="item.content"/>
         </div>
@@ -27,6 +28,12 @@ export default {
     return {
       Notes:JsNotes,
       activeName:'',
+      listName:''
+    }
+  },
+  computed:{
+    newNotes(){
+      return this.Notes.filter(i=>i.title.includes(this.listName))
     }
   },
   watch:{
@@ -40,6 +47,7 @@ export default {
       }else if(val === '常用组件'){
         this.Notes=ZujianNotes
       }
+      this.listName=''
     }
   }
 }

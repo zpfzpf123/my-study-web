@@ -8,9 +8,11 @@
           </el-aside>
         </div>
         <div slot="right" style="height: 100%;padding: 0">
-          <el-main style="padding: 0;height: 100%;">
-            <iframe v-show="url.startsWith('http')" id="iframe" :src="url" width="100%" height="100%" frameborder="0"></iframe>
-            <div style="padding: 20px" v-show="!url.startsWith('http')">
+          <el-main v-show="url.startsWith('http')" style="padding: 0;height: 100%;overflow: hidden">
+            <iframe  id="iframe" :src="url" width="100%" height="100%" frameborder="0"></iframe>
+          </el-main>
+          <el-main v-show="!url.startsWith('http')" style="padding: 0;height: 100%;overflow: auto">
+            <div style="padding: 20px">
               <note :info="noteInfo"></note>
             </div>
           </el-main>
