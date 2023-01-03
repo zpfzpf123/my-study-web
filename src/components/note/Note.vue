@@ -1,6 +1,6 @@
 <template>
   <div id="js-note">
-    <el-input placeholder="请输入你要查询的标题" v-model="listName" style="position: fixed;width:78vw"></el-input>
+    <el-input placeholder="请输入你要查询的标题" v-model="listName" style="position: fixed;width:80vw"></el-input>
     <el-collapse style="padding-top: 6vh;" v-model="activeName">
       <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
         <div>
