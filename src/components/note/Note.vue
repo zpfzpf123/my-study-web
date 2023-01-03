@@ -1,7 +1,7 @@
 <template>
   <div id="js-note">
-    <el-input placeholder="请输入你要查询的标题" v-model="listName" style="position: fixed;width:80vw"></el-input>
-    <el-collapse style="padding-top: 6vh;" v-model="activeName">
+    <el-input placeholder="请输入你要查询的标题" v-model="listName" style="position: fixed;width:79.5vw;z-index:999"></el-input>
+    <el-collapse style="padding-top: 6vh;position: relative;z-index: 1;" v-model="activeName">
       <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
         <div>
           <mavon-editor style="overflow:auto;" code-style="atom-one-dark"
