@@ -671,5 +671,189 @@ export default [
             'let f = [...new Set(e)]\n' +
             'console.log(f);\n' +
             '```'
-    }
+    },
+    {
+        name:'9',
+        title:'部分数组方法',
+        content:"# 1 forEach遍历\n" +
+            "\n" +
+            "forEach(function(value,index,array))\n" +
+            "\n" +
+            "value:数组中的每一个值\n" +
+            "\n" +
+            "index:数组中的每一个索引号\n" +
+            "\n" +
+            "array:数组本身\n" +
+            "\n" +
+            "```js\n" +
+            "    var arr = [1, 2, 3, 4, 5]\n" +
+            "    arr.forEach((value, index, array) => {\n" +
+            "      console.log(`数组中的每个值${value},对应的索引号${index},整个数组为${array}`);\n" +
+            "    })\n" +
+            "```\n" +
+            "\n" +
+            "\n" +
+            "# 2 filter 过滤筛选数组\n" +
+            "\n" +
+            "filter(function(value,index,array))返回一个新数组\n" +
+            "\n" +
+            "```js\n" +
+            "    var arr = [1, 2, 3, 4, 5]\n" +
+            "    var newArr = arr.filter((value) => {\n" +
+            "      return value > 2\n" +
+            "    })\n" +
+            "    console.log(newArr);\n" +
+            "```\n" +
+            "\n" +
+            "\n" +
+            "# 3 some 有满足条件的元素返回true\n" +
+            "\n" +
+            "some(function(value,index,array))返回值为布尔值，找到满足条件的就为true，(找到第一个满足条件的就终止循环)\n" +
+            "\n" +
+            "```js\n" +
+            "    var arr = [1, 2, 3, 4, 5]\n" +
+            "    var newArr = arr.some((value) => {\n" +
+            "      return value == 2\n" +
+            "    })\n" +
+            "    console.log(newArr);// true\n" +
+            "```\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "# 4 every 所有元素满足条件返回true\n" +
+            "\n" +
+            "every(function(value,index,array))返回值为布尔值，所有元素满足条件的就为true\n" +
+            "\n" +
+            "```js\n" +
+            "    var arr = [1, 2, 3, 4, 5]\n" +
+            "    var flag = arr.every((value) => {\n" +
+            "      return value > 0\n" +
+            "    })\n" +
+            "    var flags = arr.every((value) => {\n" +
+            "      return value > 1\n" +
+            "    })\n" +
+            "    console.log(flag);// true\n" +
+            "    console.log(flags);// false\n" +
+            "```\n" +
+            "\n" +
+            "# 5 map 返回一个新数组\n" +
+            "\n" +
+            "map(function(value,index,array))返回值为新数组，数组中的元素为原始数组元素调用函数处理后的值\n" +
+            "\n" +
+            "```js\n" +
+            "    var arr = [1, 2, 3, 4, 5]\n" +
+            "    var newArr = arr.map((value) => {\n" +
+            "      return value * 2\n" +
+            "    })\n" +
+            "    console.log(newArr);//[2,4,6,8,10]\n" +
+            "```\n" +
+            "\n" +
+            "# 6 find 找出第一个符合条件的数组成员\n" +
+            "\n" +
+            "find(function(value,index,array))返回值为满足条件的数组成员\n" +
+            "\n" +
+            "```js\n" +
+            "    const arr = [{\n" +
+            "      id: 1,\n" +
+            "      name: 'zpf'\n" +
+            "    }, {\n" +
+            "      id: 2,\n" +
+            "      name: 'zzz'\n" +
+            "    }]\n" +
+            "    const a = arr.find(value => value.id)\n" +
+            "    const b = arr.find(value => value.id == 11)\n" +
+            "    console.log(a);// {id:1,name:'zpf'}\n" +
+            "    console.log(b);// undefined\n" +
+            "```\n" +
+            "\n" +
+            "# 7 findIndex 找到第一个符合条件的数组成员的索引值\n" +
+            "\n" +
+            "findIndex(function(value,index,array))返回值为满足条件的数组成员的索引值 找不到为-1\n" +
+            "\n" +
+            "```js\n" +
+            "    const arr = [{\n" +
+            "      id: 1,\n" +
+            "      name: 'zpf'\n" +
+            "    }, {\n" +
+            "      id: 2,\n" +
+            "      name: 'zzz'\n" +
+            "    }]\n" +
+            "    const a = arr.findIndex(value => value.id)\n" +
+            "    const b = arr.findIndex(value => value.id == 11)\n" +
+            "    console.log(a);// 0\n" +
+            "    console.log(b);// -1\n" +
+            "```\n" +
+            "\n" +
+            "# 8 includes() 数组中是否包含给定的值 包含返回true 不包含false\n" +
+            "\n" +
+            "```js\n" +
+            "    console.log([1, 2, 3].includes(3, -1));// 搜索值3 起始位置倒数第一个-1 true\n" +
+            "    console.log([1, 2, 3].includes(4));// false\n" +
+            "    console.log([1, 2, 3].includes(1, 2, 3, 4));//false\n" +
+            "    console.log([1, 2, 3].includes(1, 2, 4));//false\n" +
+            "```"
+    },
+    {
+        name:'10',
+        title:'时间戳转化为年月日时分秒',
+        content:"```js\n" +
+            "timestampToTime(time) {\n" +
+            "      if (!time) {\n" +
+            "        return\n" +
+            "      }\n" +
+            "      let date = new Date(time)\n" +
+            "      let len = time.toString().length;\n" +
+            "      if (len < 13) {\n" +
+            "        let sub = 13 - len;\n" +
+            "        sub = Math.pow(10, sub);\n" +
+            "        date = new Date(time * sub);\n" +
+            "      }\n" +
+            "      let y = date.getFullYear() + '-';\n" +
+            "      let M = date.getMonth() + 1;\n" +
+            "      M = (M < 10 ? '0' + M : M) + '-';\n" +
+            "      let d = date.getDate();\n" +
+            "      d = (d < 10 ? '0' + d : d) + ' ';\n" +
+            "      return y + M + d;\n" +
+            "    },\n" +
+            "```\n" +
+            "\n",
+    },
+    {
+        name:'11',
+        title:'标准时间转化为年月日时分秒',
+        content:"```js\n" +
+            "formatTime(time, fmt) {\n" +
+            "  if (!time) return '';\n" +
+            "  else {\n" +
+            "    const date = new Date(time);\n" +
+            "    const o = {\n" +
+            "      'M+': date.getMonth() + 1,\n" +
+            "      'd+': date.getDate(),\n" +
+            "      'H+': date.getHours(),\n" +
+            "      'm+': date.getMinutes(),\n" +
+            "      's+': date.getSeconds(),\n" +
+            "      'q+': Math.floor((date.getMonth() + 3) / 3),\n" +
+            "      S: date.getMilliseconds(),\n" +
+            "    };\n" +
+            "    if (/(y+)/.test(fmt))\n" +
+            "      fmt = fmt.replace(\n" +
+            "        RegExp.$1,\n" +
+            "        (date.getFullYear() + '').substr(4 - RegExp.$1.length)\n" +
+            "      );\n" +
+            "    for (const k in o) {\n" +
+            "      if (new RegExp('(' + k + ')').test(fmt)) {\n" +
+            "        fmt = fmt.replace(\n" +
+            "          RegExp.$1,\n" +
+            "          RegExp.$1.length === 1\n" +
+            "            ? o[k]\n" +
+            "            : ('00' + o[k]).substr(('' + o[k]).length)\n" +
+            "        );\n" +
+            "      }\n" +
+            "    }\n" +
+            "    return fmt;\n" +
+            "  }\n" +
+            "}\n" +
+            "//formatTime(new Date(), \"yyyyMMddHHmmss\")\n" +
+            "```",
+    },
 ]

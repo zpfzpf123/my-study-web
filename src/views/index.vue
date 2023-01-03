@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       url: 'https://v2.cn.vuejs.org/v2/guide/',
-      offset:.15,
+      offset:.18,
       noteInfo:''
     }
   },
@@ -76,17 +76,6 @@ export default {
     }
     /deep/ .el-aside{
       height: 100%;
-    }
-    .default{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: linear-gradient(to right, orange, purple);
-      -webkit-background-clip: text;
-      color: transparent;
-      font-size: 30px;
     }
   }
 }
