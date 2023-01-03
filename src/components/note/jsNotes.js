@@ -856,4 +856,51 @@ export default [
             "//formatTime(new Date(), \"yyyyMMddHHmmss\")\n" +
             "```",
     },
+    {
+        name:'12',
+        title:'函数的节流与防抖',
+        content:"## 防抖函数：将多次触发变成最后一次触发；\n" +
+            "\n" +
+            "```js\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "function debounce(fn,wait){\n" +
+            "  let timer = null;\n" +
+            "  return function (){\n" +
+            "    let arg = arguments;\n" +
+            "    if(timer){\n" +
+            "      clearTimeout(timer);\n" +
+            "      timer = null;\n" +
+            "    }\n" +
+            "    timer = setTimeout(()=>{\n" +
+            "       fn.apply(this,arg)\n" +
+            "    },wait)\n" +
+            "  }\n" +
+            "}\n" +
+            "function clg(){\n" +
+            "  console.log('clg')\n" +
+            "}\n" +
+            "window.addEventListener('resize',debounce(clg,1000))\n" +
+            "```\n" +
+            "\n" +
+            " ## 节流函数：将多次执行变成每隔一个时间节点去执行的函数\n" +
+            "\n" +
+            "```js\n" +
+            "function throttle(fn,time){\n" +
+            "  let lastTime = null;\n" +
+            "  return function(){\n" +
+            "    let nowTime = Date.now();\n" +
+            "    if(nowTime - lastTime > time || !lastTime){\n" +
+            "      fn();\n" +
+            "      last = nowTime\n" +
+            "    }\n" +
+            "  }\n" +
+            "}\n" +
+            "function sayHi(){\n" +
+            "  console.log('hi')\n" +
+            "}\n" +
+            "setInterval(throttle(sayHi,1000),500)\n" +
+            "```",
+    },
 ]
