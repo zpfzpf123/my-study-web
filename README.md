@@ -4,3 +4,7 @@
 + 重要的技术知识点合集
 
 针对页面的UI，本人决定采用ElementUi
+打包后像打包的index.html加入代码
+```html
+<meta http-equiv="Content-Security-Policy">
+```
