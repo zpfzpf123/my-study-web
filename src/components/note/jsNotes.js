@@ -862,9 +862,6 @@ export default [
         content:"## 防抖函数：将多次触发变成最后一次触发；\n" +
             "\n" +
             "```js\n" +
-            "\n" +
-            "\n" +
-            "\n" +
             "function debounce(fn,wait){\n" +
             "  let timer = null;\n" +
             "  return function (){\n" +

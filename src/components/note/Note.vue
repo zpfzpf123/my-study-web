@@ -38,25 +38,6 @@ export default {
       return this.Notes.filter(i => i.title.toLowerCase().includes(this.listName.toLowerCase()))
     }
   },
-  methods: {
-    addUrl() {
-      this.$nextTick(function () {
-        let _aList = document.querySelectorAll(".v-note-navigation-content a");
-        for (let i = 0; i < _aList.length; i++) {
-          let _aParent = _aList[i].parentNode;
-          let _a = _aParent.firstChild;
-          if (!_a.id) continue; // 把不属于导航中的a标签去掉，否则会报错
-          let _text = _aParent.lastChild;
-          let text = _text.textContent;
-          _a.href = "#" + _a.id;
-          _a.innerText = text;
-          _aParent.removeChild(_text);
-        }
-      });
-    },
-
-
-  },
   watch: {
     info(val) {
       if (val === 'Js') {
