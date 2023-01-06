@@ -4,5 +4,7 @@ export default [
     'https://www.axios-http.cn/docs/intro',
     'http://fanyi.baidu.com/',
     'https://github.com/',
-    'https://vuejsexamples.com/'
+    'https://vuejsexamples.com/',
+    'http://echarts.zhangmuchen.top/#/index',
+    'http://chartlib.datains.cn'
 ]

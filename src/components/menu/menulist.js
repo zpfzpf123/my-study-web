@@ -59,7 +59,7 @@ export default [
                     {
                         name:"iView",
                         index: '2-2',
-                        url: 'http://v4.iviewui.com/docs/introduce'
+                        url: 'https://v4.iviewui.com/docs/introduce'
                     },
                     {
                         name:"Ant Design Vue",
@@ -69,12 +69,12 @@ export default [
                     {
                         name:'VueFastDev',
                         index: '2-4',
-                        url: 'http://web_help.gitee.io/vuefastdevdocs/#/devGuide/introduce'
+                        url: 'https://web_help.gitee.io/vuefastdevdocs/#/devGuide/introduce'
                     },
                     {
                         name:'DataV(大屏专用)',
                         index: '2-5',
-                        url: 'http://datav.jiaminghi.com/guide/'
+                        url: 'https://datav.jiaminghi.com/guide/'
                     }
                 ]
             }
@@ -189,7 +189,7 @@ export default [
                     {
                         name:"moment",
                         index: '8-1',
-                        url: 'http://momentjs.cn/docs/'
+                        url: 'https://momentjs.cn/docs/'
                     },
                 ]
             }
