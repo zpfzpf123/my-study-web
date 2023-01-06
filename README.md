@@ -4,9 +4,5 @@
 + 重要的技术知识点合集
 
 针对页面的UI，本人决定采用ElementUi
-在打包好的index.html加入以下代码
-```html
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-```
 跳转不过去的 自己动动手复制一下吧。。。。
 ![img_1.png](img_1.png)
