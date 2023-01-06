@@ -8,3 +8,5 @@
 ```html
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 ```
+跳转不过去的 自己动动手复制一下吧。。。。
+![img_1.png](img_1.png)
