@@ -899,5 +899,23 @@ export default [
             "}\n" +
             "setInterval(throttle(sayHi,1000),500)\n" +
             "```",
+    },{
+        name:'13',
+        title:'监听网页行为',
+        content:"监听网页行为（如是否调用某个接口）\n" +
+            "\n" +
+            "```js\n" +
+            "const observer = new PerformanceObserver(_ => {\n" +
+            "\t\tif (performance.getEntriesByName(\"接口ip\")\n" +
+            "\t\t\t.length >\n" +
+            "\t\t\t0) {\n" +
+            "\t\t\tconsole.log('网页调用该接口')\n" +
+            "\t\t}\n" +
+            "\n" +
+            "\t});\n" +
+            "\tobserver.observe({\n" +
+            "\t\tentryTypes: [\"resource\"]\n" +
+            "\t})\n" +
+            "```",
     },
 ]
