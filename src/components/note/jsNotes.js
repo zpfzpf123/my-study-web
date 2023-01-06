@@ -245,7 +245,7 @@ export default [
             '\n' +
             '添加某个值，返回 Set 结构本身，当添加实例中已经存在的元素，set不会进行处理添加\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'let list=new Set();\n' +
             'list.add(1)\n' +
             'list.add(2).add(3).add(3)   // 2只被添加了一次\n' +
@@ -256,7 +256,7 @@ export default [
             '\n' +
             '删除某个值，返回一个布尔值，表示删除是否成功\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list=new Set([1,20,30,40])\n' +
             'list.delete(30)      //删除值为30的元素，这里的30并非下标\n' +
             '12\n' +
@@ -266,7 +266,7 @@ export default [
             '\n' +
             '返回一个布尔值，判断该值是否为Set的成员\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list=new Set([1,2,3,4])\n' +
             'list.has(2)//true\n' +
             '12\n' +
@@ -276,7 +276,7 @@ export default [
             '\n' +
             '清除所有成员，没有返回值\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list=new Set([1,2,3,4])\n' +
             'list.clear()\n' +
             '12\n' +
@@ -288,7 +288,7 @@ export default [
             '\n' +
             '返回键名的遍历器，相等于返回键值遍历器values()\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list2=new Set([\'a\',\'b\',\'c\'])\n' +
             'for(let key of list2.keys()){\n' +
             '   console.log(key)//a,b,c\n' +
@@ -300,7 +300,7 @@ export default [
             '\n' +
             '返回键值的遍历器\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list=new Set([\'a\',\'b\',\'c\'])\n' +
             'for(let value of list.values()){\n' +
             'console.log(value)//a,b,c\n' +
@@ -312,7 +312,7 @@ export default [
             '\n' +
             '返回键值对的遍历器\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list=new Set([\'4\',\'5\',\'hello\'])\n' +
             'for (let item of list.entries()) {\n' +
             '  console.log(item);\n' +
@@ -325,7 +325,7 @@ export default [
             '\n' +
             '使用回调函数遍历每个成员\n' +
             '\n' +
-            '```\n' +
+            '```js\n' +
             'let list=new Set([\'4\',\'5\',\'hello\'])\n' +
             'list.forEach((value, key) => console.log(key + \' : \' + value))\n' +
             '// 4:4    5:5   hello:hello\n' +
@@ -336,7 +336,7 @@ export default [
             '\n' +
             '###### 4.1 用于[数组](https://so.csdn.net/so/search?q=数组&spm=1001.2101.3001.7020)去重\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'let arr = [3, 5, 2, 2, 5, 5];\n' +
             'let setArr = new Set(arr)     // 返回set数据结构  Set(3) {3, 5, 2}\n' +
             '\n' +
@@ -350,7 +350,7 @@ export default [
             '\n' +
             '###### 4.2 用于字符串去重\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'let str = "352255";\n' +
             'let unique = [...new Set(str)].join("");     // 352 \n' +
             '12\n' +
@@ -358,7 +358,7 @@ export default [
             '\n' +
             '###### 4.3 实现并集、交集、和差集\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'let a = new Set([1, 2, 3]);\n' +
             'let b = new Set([4, 3, 2]);\n' +
             '\n' +
@@ -395,7 +395,7 @@ export default [
             '\n' +
             'size属性返回 Map 结构的成员总数。\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'const map = new Map();\n' +
             'map.set(\'foo\', true);\n' +
             'map.set(\'bar\', false);\n' +
@@ -412,7 +412,7 @@ export default [
             '\n' +
             '同时返回的是当前Map对象，可采用链式写法\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'const m = new Map();\n' +
             'let fn = function(){}\n' +
             '\n' +
@@ -427,7 +427,7 @@ export default [
             '\n' +
             'get方法读取key对应的键值，如果找不到key，返回undefined\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'const m = new Map();\n' +
             '\n' +
             'const hello = function() {console.log(\'hello\');};\n' +
@@ -441,7 +441,7 @@ export default [
             '\n' +
             'has方法返回一个布尔值，表示某个键是否在当前 Map 对象之中\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'const m = new Map();\n' +
             '\n' +
             'm.set(\'edition\', 6);\n' +
@@ -458,7 +458,7 @@ export default [
             '\n' +
             'delete方法删除某个键，返回true。如果删除失败，返回false\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'const m = new Map();\n' +
             'm.set(undefined, \'nah\');\n' +
             'm.has(undefined)     // true\n' +
@@ -472,7 +472,7 @@ export default [
             '\n' +
             'clear方法清除所有成员，没有返回值\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'let map = new Map();\n' +
             'map.set(\'foo\', true);\n' +
             'map.set(\'bar\', false);\n' +
@@ -490,7 +490,7 @@ export default [
             '- entries()：返回所有成员的遍历器\n' +
             '- forEach()：遍历 Map 的所有成员\n' +
             '\n' +
-            '```cpp\n' +
+            '```js\n' +
             'const map = new Map([\n' +
             '  [\'F\', \'no\'],\n' +
             '  [\'T\',  \'yes\'],\n' +

@@ -4,7 +4,7 @@
     <el-collapse v-model="activeName">
       <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
         <div>
-          <mavon-editor style="overflow:auto;" code-style="atom-one-dark"
+          <mavon-editor style="overflow:auto;" code-style="monokai"
                         defaultOpen="preview" :subfield="false" v-model="item.content"/>
         </div>
       </el-collapse-item>
