@@ -264,7 +264,7 @@ export default [
                     {
                         name:"常用组件",
                         index: '11-4',
-                        url: '常用组件' 
+                        url: '常用组件'
                     },
                 ]
             },
