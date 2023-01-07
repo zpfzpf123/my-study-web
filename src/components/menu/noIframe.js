@@ -6,5 +6,6 @@ export default [
     'https://github.com/',
     'https://vuejsexamples.com/',
     'http://echarts.zhangmuchen.top/#/index',
-    'http://chartlib.datains.cn'
+    'http://chartlib.datains.cn',
+    'http://datav.jiaminghi.com/guide/'
 ]
