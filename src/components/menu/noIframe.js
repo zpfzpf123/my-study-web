@@ -7,5 +7,6 @@ export default [
     'https://vuejsexamples.com/',
     'http://echarts.zhangmuchen.top/#/index',
     'http://chartlib.datains.cn',
-    'http://datav.jiaminghi.com/guide/'
+    'http://datav.jiaminghi.com/guide/',
+    'https://echarts.apache.org/zh/index.html',
 ]
