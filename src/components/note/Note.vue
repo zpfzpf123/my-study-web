@@ -1,20 +1,6 @@
 <template>
   <div class="js-note">
-    <el-backtop target=".js-note" style="position: absolute;z-index: 9999;">
-      <div
-          style="{
-        height: 100%;
-        width: 100%;
-        background-color: #f2f5f6;
-        box-shadow: 0 0 6px rgba(0,0,0, .12);
-        text-align: center;
-        line-height: 40px;
-        color: #1989fa;
-      }"
-      >
-        UP
-      </div>
-    </el-backtop>
+    <el-backtop target=".js-note" style="position: absolute;z-index: 9999;"></el-backtop>
     <el-input placeholder="请输入你要查询的标题" v-model="listName"></el-input>
     <el-collapse v-model="activeName">
       <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
