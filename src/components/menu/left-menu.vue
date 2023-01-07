@@ -52,8 +52,8 @@ export default {
       } else {
         let vals = []
         this.activeIndex = []
-        this.list.find(item => {
-          return item.childrenList.find(val => {
+        this.list.some(item => {
+          return item.childrenList.some(val => {
             if (val.name) {
               if (val.name.toLowerCase().includes(this.searchList.toLowerCase())) {
                 vals.push(item)
@@ -62,16 +62,16 @@ export default {
                 return true
               }
             } else if (val.childrenList.length) {
-              return val.childrenList.find(value => {
+              return val.childrenList.some(value => {
                 if (value.name.toLowerCase().includes(this.searchList.toLowerCase())) {
                   vals.push(item)
                   this.activeIndex.push(item.index)
                   this.index = value.index
                   return true
                 }
-              })!==undefined
+              })
             }
-          })!==undefined
+          })
         })
         return vals
       }
@@ -79,9 +79,9 @@ export default {
   },
   methods: {
     selectList(index) {
-      this.list.find(i => {
-        i.childrenList.find(item => {
-          item.childrenList.find(ite => {
+      this.list.some(i => {
+        i.childrenList.some(item => {
+          item.childrenList.some(ite => {
             if (ite.index === index) {
               this.$emit('sendUrl', ite.url)
               return true
