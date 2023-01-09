@@ -58,6 +58,7 @@ export default {
         duration: 2000
       });
       this.listName = ''
+      this.activeName = ''
     }
   }
 }
