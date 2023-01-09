@@ -50,6 +50,13 @@ export default {
       } else if (val === '常用组件') {
         this.Notes = ZujianNotes
       }
+      this.$notify({
+        title: '提示',
+        message: `该页面共有${this.Notes.length}条数据`,
+        type: 'success',
+        showClose: false,
+        duration: 2000
+      });
       this.listName = ''
     }
   }
