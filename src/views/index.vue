@@ -4,17 +4,23 @@
       <split v-model="offset" min="0">
         <div style="height: 100%" slot="left">
           <el-aside width="auto">
-            <left-menu @sendUrl="sendUrl"></left-menu>
+            <left-menu @sendInfo="sendInfo"></left-menu>
           </el-aside>
         </div>
         <div slot="right" style="height: 100%;padding: 0">
-          <el-main v-show="url.startsWith('http')" style="padding: 0;height: 100%;overflow: hidden">
-            <iframe  id="iframe" :src="url" width="100%" height="100%" frameborder="0"></iframe>
+          <el-main v-show="info.startsWith('http')" style="padding: 0;height: 100%;overflow: hidden">
+            <iframe id="iframe" :src="info" width="100%" height="100%" frameborder="0"></iframe>
           </el-main>
-          <el-main v-show="!url.startsWith('http')" style="padding: 0;height: 100%;overflow: auto">
+          <el-main v-show="info.startsWith('a-')" style="padding: 0;height: 100%;overflow: auto">
             <div style="padding: 20px">
-              <note :info="noteInfo"></note>
+              <note :info="info"></note>
             </div>
+          </el-main>
+          <el-main v-show="info==='b-vue代码'" style="padding: 0;height: 100%;overflow: auto">
+            <vue-code-view :type="info"></vue-code-view>
+          </el-main>
+          <el-main v-show="info==='b-html代码'" style="padding: 0;height: 100%;overflow: auto">
+            <html-code-view></html-code-view>
           </el-main>
         </div>
       </split>
@@ -25,38 +31,29 @@
 import LeftMenu from "@/components/menu/left-menu";
 import NoIframe from "@/components/menu/noIframe";
 import Note from "@/components/note/Note";
+import VueCodeView from "@/components/codeView/vue-code-view";
+import HtmlCodeView from "@/components/codeView/html-code-view";
+
 export default {
   name: "index",
   data() {
     return {
-      url: 'https://v2.cn.vuejs.org/v2/guide/',
-      offset:.18,
-      noteInfo:''
+      info: 'https://v2.cn.vuejs.org/v2/guide/',
+      offset: .18,
     }
   },
   components: {
+    HtmlCodeView,
+    VueCodeView,
     Note,
     LeftMenu,
   },
   methods: {
-    sendUrl(url) {
-      if(NoIframe.includes(url)){
-        window.open(url)
-      }else {
-          this.url = url
-          switch (url) {
-            case 'js':
-              this.noteInfo='Js';
-              break;
-            case 'Vue':
-              this.noteInfo='Vue';
-              break;
-            case 'css':
-              this.noteInfo='Css';
-              break;
-            case '常用组件':
-              this.noteInfo='常用组件'
-          }
+    sendInfo(info) {
+      if (NoIframe.includes(info)) {
+        window.open(info)
+      } else {
+        this.info = info
       }
     }
   }
@@ -71,10 +68,12 @@ export default {
   .contain {
     width: 100%;
     height: 100%;
-    /deep/ .el-main{
+
+    /deep/ .el-main {
       overflow: auto;
     }
-    /deep/ .el-aside{
+
+    /deep/ .el-aside {
       height: 100%;
     }
   }

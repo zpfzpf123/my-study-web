@@ -83,7 +83,8 @@ export default {
         i.childrenList.some(item => {
           item.childrenList.some(ite => {
             if (ite.index === index) {
-              this.$emit('sendUrl', ite.url)
+              ite.url && this.$emit('sendInfo', ite.url)
+              ite.list && this.$emit('sendInfo', ite.list)
               return true
             }
           })
@@ -97,5 +98,9 @@ export default {
 <style scoped lang="less">
 /deep/ .el-submenu__icon-arrow {
   top: 59%;
+}
+/deep/ .el-submenu__title{
+  display: flex;
+  align-items: center;
 }
 </style>

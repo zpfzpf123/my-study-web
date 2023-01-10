@@ -6,13 +6,33 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'view-design/dist/styles/iview.css';
 import {Split} from "view-design";
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-// use
-Vue.use(mavonEditor)
+import CodeView from "vue-code-view";
+
+
+import VMdEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+import '@kangc/v-md-editor/lib/theme/style/github.css';
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import createCopyCodePlugin from '@kangc/v-md-editor/lib/plugins/copy-code/index';
+import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css';
+import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
+
+VueMarkdownEditor.use(createLineNumbertPlugin());
+VueMarkdownEditor.use(createCopyCodePlugin());
+// highlightjs
+import hljs from 'highlight.js';
+
+VMdEditor.use(githubTheme, {
+  Hljs: hljs,
+});
+
+Vue.use(VMdEditor);
+
 Vue.component('split',Split)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(CodeView);
 new Vue({
   router,
   store,
