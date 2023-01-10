@@ -38,11 +38,6 @@ export default {
       return this.Notes.filter(i => i.title.toLowerCase().includes(this.listName.toLowerCase()))
     }
   },
-  methods: {
-    handleCopyCodeSuccess(code) {
-      console.log(code)
-    }
-  },
   watch: {
     info(val) {
       if (val === 'a-js') {
