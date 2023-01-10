@@ -918,4 +918,613 @@ export default [
             "\t})\n" +
             "```",
     },
+    {
+        name:'14',
+        title:'js时间方法汇总',
+        content:"```js\n" +
+            "/**\n" +
+            " *\n" +
+            " @ fileOverview utils通用工具库\n" +
+            " *\n" +
+            " * @module time\n" +
+            " * @author 陈伯禹(112298)\n" +
+            " * @version 1.1.0\n" +
+            " *\n" +
+            " */\n" +
+            "\n" +
+            "const REG = {\n" +
+            "    TIME: /^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/,\n" +
+            "    DATE: /^\\d{4}-(0[0-9]|1[0-2])-([0-2][0-9]|3[0-1]) ([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/,\n" +
+            "    DATE_M_D_Y: /^(0[0-9]|1[0-2])-([0-2][0-9]|3[0-1])-\\d{4} ([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/,\n" +
+            "    DATE_Z: /^\\d{4}(0[0-9]|1[0-2])([0-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3])[0-5][0-9][0-5][0-9]Z$/\n" +
+            "}\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "/**\n" +
+            " * 根据传入的时间格式,格式化传入的时间（该方法也挂载在Date原型链上）注意时分秒为大写\n" +
+            " *\n" +
+            " * @method dateFormat\n" +
+            " * @param {DateObject} nowDate 时间对象\n" +
+            " * @param {string} format 需要转换的时间格式\n" +
+            " * @example\n" +
+            " * dateFormat(new Date())\n" +
+            " * \"2020-04-13\"\n" +
+            " * dateFormat(new Date(),'yyyy-mm-dd HH')\n" +
+            " * \"2020-27-13 11\"\n" +
+            " * dateFormat(new Date(),'yyyy-mm-dd HH:MM')\n" +
+            " * \"2020-27-13 11:04\"\n" +
+            " * dateFormat(new Date(),'yyyy-mm-dd HH:MM:ss SS  qq')\n" +
+            " * \"2020-28-13 11:04:54 63  02\"\n" +
+            " * @return {string} format 格式化后的时间字符串\n" +
+            " */\n" +
+            "function  dateFormat(nowDate,format=\"yyyy-MM-dd\") {\n" +
+            "    var o = {\n" +
+            "        \"M+\" : nowDate.getMonth() + 1,\n" +
+            "        \"d+\" : nowDate.getDate(),\n" +
+            "        \"H+\" : nowDate.getHours(),\n" +
+            "        \"m+\" : nowDate.getMinutes(),\n" +
+            "        \"s+\" : nowDate.getSeconds(),\n" +
+            "        \"q+\" : Math.floor((nowDate.getMonth() + 3)/3),\n" +
+            "        \"S+\" : nowDate.getMilliseconds()\n" +
+            "    };\n" +
+            "\n" +
+            "    if(/(y+)/.test(format))\n" +
+            "    {\n" +
+            "        format = format.replace(RegExp.$1,(nowDate.getFullYear()+\"\").substr(4-RegExp.$1.length));\n" +
+            "    }\n" +
+            "\n" +
+            "    if(/(S+)/.test(format))\n" +
+            "    {\n" +
+            "        format = format.replace(RegExp.$1,(nowDate.getMilliseconds()+\"\").substr(3-RegExp.$1.length));\n" +
+            "    }\n" +
+            "\n" +
+            "    for(var k in o)\n" +
+            "    {\n" +
+            "        if(new RegExp(\"(\" +k + \")\").test(format))\n" +
+            "        {\n" +
+            "            format = format.replace(RegExp.$1,RegExp.$1.length == 1?o[k]:(\"00\"+o[k]).substr((\"\"+o[k]).length));\n" +
+            "        }\n" +
+            "    }\n" +
+            "    return format;\n" +
+            "}\n" +
+            "Date.prototype.format = dateFormat;\n" +
+            "\n" +
+            "\n" +
+            "/**\n" +
+            " * 月日时分秒补0函数\n" +
+            " *\n" +
+            " * @method addZero\n" +
+            " * @param {Number} time 是否要加0个参数\n" +
+            " * @example\n" +
+            " * addZero(1)  => 01\n" +
+            " * addZero(11)  => 11\n" +
+            " *\n" +
+            " * @return {Number|String} newTime 补0处理后的结果\n" +
+            " */\n" +
+            "function addZero(time) {\n" +
+            "    if(isNaN(time)){\n" +
+            "        return time\n" +
+            "    }\n" +
+            "    let newTime = time > 9 ? time : '0' + time\n" +
+            "    return newTime\n" +
+            "}\n" +
+            "\n" +
+            "\n" +
+            "/**\n" +
+            " * 获取当日时间区间 如[2019-10-10 00:00:00，2019-10-10 23:59:59]\n" +
+            " * @method startAndEndTime\n" +
+            " * @example\n" +
+            " * startAndEndTime()  => [2019-10-10 00:00:00，2019-10-10 23:59:59]\n" +
+            " *\n" +
+            " * @return {Array} 如[2019-10-10 00:00:00，2019-10-10 23:59:59]\n" +
+            " */\n" +
+            "function startAndEndTime() {\n" +
+            "    var date=toLocaleStringByMs(new Date()).substring(0,10)\n" +
+            "    return  [date+' 00:00:00',date+' 23:59:59'];\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 校验时间格式是否形如 12:00:00，判断正则为/^\\d{2}:\\d{2}:\\d{2}$/\n" +
+            " *\n" +
+            " * @method valifyTime\n" +
+            " * @param {string} time 时间格式，如 10:00:00\n" +
+            " * @example\n" +
+            " * valifyTime('aaa')   false\n" +
+            " * valifyTime('10:11:11')   true\n" +
+            " * valifyTime('99:99:99')   true\n" +
+            " * @return {Boolean} 是否\n" +
+            " */\n" +
+            "function valifyTime(time) {\n" +
+            "    const reg = /^\\d{2}:\\d{2}:\\d{2}$/\n" +
+            "    return reg.test(time)\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 判定两组时间序列是否存在重复（交叉或包含）\n" +
+            " *\n" +
+            " * @method isTimeContainTime\n" +
+            " * @param {array} time1Arr 时间范围，如 [10:00:00, 12:00:00]\n" +
+            " * @param {array} time2Arr 时间范围，如 [09:00:00, 23:00:00]\n" +
+            " * @example\n" +
+            " * 参数只能为两个数组且数组长度为2,各元素符合valifyTime校验\n" +
+            " * valifyTime([10:00:00, 12:00:00],[09:00:00, 23:00:00])   true\n" +
+            " * @return {Boolean} 是否\n" +
+            " */\n" +
+            "function isTimeContainTime(time1Arr, time2Arr) {\n" +
+            "    let timeArr\n" +
+            "    let validate = true\n" +
+            "        // 确保两组时间范围格式正确\n" +
+            "    if (!Array.isArray(time1Arr) || !Array.isArray(time2Arr)) {\n" +
+            "        console.error('Please enter two array.')\n" +
+            "    }\n" +
+            "    if (time1Arr.length !== 2 || time2Arr.length !== 2) {\n" +
+            "        console.error('Please enter currect time.')\n" +
+            "    }\n" +
+            "    timeArr = [...time1Arr, ...time2Arr]\n" +
+            "    for (let time of timeArr) {\n" +
+            "        if (!valifyTime(time)) {\n" +
+            "            console.error('Please enter currect time.')\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            "    // 检验时间是否存在重复\n" +
+            "    if (time2Arr[0] > time1Arr[0] && time2Arr[0] < time1Arr[1] ||\n" +
+            "        time2Arr[1] > time1Arr[0] && time2Arr[1] < time1Arr[1]) {\n" +
+            "        validate = false;\n" +
+            "    }\n" +
+            "    if (time1Arr[0] > time2Arr[0] && time1Arr[0] < time2Arr[1] ||\n" +
+            "        time1Arr[1] > time2Arr[0] && time1Arr[1] < time2Arr[1]) {\n" +
+            "        validate = false;\n" +
+            "    }\n" +
+            "\n" +
+            "    return validate\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 将时间转换为UTC时间字符串，支持格式 hh:mm:ss\n" +
+            " *\n" +
+            " * @method toISOStringByTime\n" +
+            " * @param {string} timeStr 源时间 如(10:30:30或者10:30)\n" +
+            " * @example\n" +
+            " * 当前为东八区\n" +
+            " * toISOStringByTime(07:00:00)\n" +
+            " * 返回值为{\n" +
+            " *     offset:-1,\n" +
+            " *     time:'23:00:00'\n" +
+            " * }\n" +
+            " * toISOStringByTime(12:00:00)\n" +
+            " * 返回值为{\n" +
+            " *     offset:0,\n" +
+            " *     time:'04:00:00'\n" +
+            " * }\n" +
+            " * @returns {object} 包含转换后的时间字符串time和日期偏差offset 形如'{offset:6,time:'10:10:10'}'\n" +
+            " */\n" +
+            "function toISOStringByTime(timeStr) {\n" +
+            "    const time = {}\n" +
+            "    let date = new Date(`2000/10/24 ${timeStr}`)\n" +
+            "    time.d = date.getUTCDate()\n" +
+            "    time.h = addZero(date.getUTCHours())\n" +
+            "    time.min = addZero(date.getUTCMinutes())\n" +
+            "    time.s = addZero(date.getUTCSeconds())\n" +
+            "\n" +
+            "    return {\n" +
+            "        offset: time.d - 24,\n" +
+            "        time: `${time.h}:${time.min}:${time.s}`\n" +
+            "    }\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 将时间转换为UTC时间字符串，默认返回格式为yyyy-mm-dd hh:mm:ss，当type为utcStr 返回值形入20200110T103056Z\n" +
+            " *\n" +
+            " * @method toISOStringByDate\n" +
+            " * @param {string|Object} timeParams 源时间\n" +
+            " * @param {string} type str 普通时间格式， utcStr yyyymmddThhmmssZ格式\n" +
+            " * @example\n" +
+            " * 当前为东八区\n" +
+            " * toISOStringByDate(new Date())\n" +
+            " * \"2020-04-07 08:55:53\"\n" +
+            " * toISOStringByDate(new Date(),'utcStr')\n" +
+            " * \"20200407T085606Z\"\n" +
+            " * @returns {String } 按格式返回的时间字符串\n" +
+            " */\n" +
+            "function toISOStringByDate(timeParams, type = 'str') {\n" +
+            "    const time = {}\n" +
+            "    let newTime ='',date =''\n" +
+            "    if(timeParams instanceof Date){\n" +
+            "        date = timeParams\n" +
+            "    }else {\n" +
+            "        date = new Date(timeParams.replace(/-/g, '/'))\n" +
+            "    }\n" +
+            "    time.y = date.getUTCFullYear()\n" +
+            "    time.m = addZero(date.getUTCMonth() + 1)\n" +
+            "    time.d = addZero(date.getUTCDate())\n" +
+            "    time.h = addZero(date.getUTCHours())\n" +
+            "    time.min = addZero(date.getUTCMinutes())\n" +
+            "    time.s = addZero(date.getUTCSeconds())\n" +
+            "\n" +
+            "    if (type === 'utcStr') {\n" +
+            "        newTime = `${time.y}${time.m}${time.d}T${time.h}${time.min}${time.s}Z`\n" +
+            "    } else {\n" +
+            "        newTime = `${time.y}-${time.m}-${time.d} ${time.h}:${time.min}:${time.s}`\n" +
+            "    }\n" +
+            "\n" +
+            "    return newTime\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 根据时间字符串格式(xx:xx:xx还是 yyyy-mm-dd HH:mm:ss)将时间转换为UTC时间字符串,前者调用toISOStringByTime后者调用toISOStringByDate\n" +
+            " *\n" +
+            " * @method toISOString\n" +
+            " * @param {string} timeStr 源时间字符串\n" +
+            " * @param {string} type str 普通时间格式， utcStr yyyymmddThhmmssZ格式\n" +
+            " * @example\n" +
+            " * 当前为东八区\n" +
+            " * toISOString('2010-10-10 10:10:10')\n" +
+            " * \"2010-10-10 02:10:10\"\n" +
+            " * toISOString('10:10:10')\n" +
+            " * 返回值为{\n" +
+            " *     offset:0,\n" +
+            " *     time:'02:10:10'\n" +
+            " * }\n" +
+            " * @returns {String|object } 字符串形如'yyyy-mm-dd HH:mm:ss'或者对象 形如'{offset:6,time:'10:10:10'}'\n" +
+            " *\n" +
+            " */\n" +
+            "function toISOString(timeStr, type) {\n" +
+            "    try {\n" +
+            "        if (REG.DATE.test(timeStr)) {\n" +
+            "            // 格式 yyyy-mm-dd hh:mm:ss\n" +
+            "            return toISOStringByDate(timeStr, type)\n" +
+            "        } else if (REG.TIME.test(timeStr)) {\n" +
+            "            // 格式 hh:mm:ss\n" +
+            "            return toISOStringByTime(timeStr)\n" +
+            "        }\n" +
+            "    } catch (e) {\n" +
+            "        return ''\n" +
+            "    }\n" +
+            "    console.error('Please enter date as yyyy-mm-dd hh:mm:ss')\n" +
+            "}\n" +
+            "\n" +
+            "\n" +
+            "/**\n" +
+            " * 将UTC时间转换为本地时间字符串，支持格式 hh:mm:ss\n" +
+            " *\n" +
+            " * @method toLocaleStringByTime\n" +
+            " * @param {string} timeStr 源时间 形如'10:10:10'\n" +
+            " * @example\n" +
+            " * toLocaleStringByTime('1:10:10')\n" +
+            " * {offset: 0, time: \"09:10:10\"}\n" +
+            " * @returns {object} 包含转换后的时间字符串time和日期偏差offset 形如'{offset:6,time:'10:10:10'}'\n" +
+            " */\n" +
+            "function toLocaleStringByTime(timeStr) {\n" +
+            "    const time = {}\n" +
+            "\n" +
+            "    let timeList = timeStr.split(':');\n" +
+            "\n" +
+            "    let utcDate = Date.UTC(2000, 10, 24, timeList[0], timeList[1], timeList[2]);\n" +
+            "    let date = new Date(utcDate);\n" +
+            "\n" +
+            "    time.d = date.getDate()\n" +
+            "    time.h = addZero(date.getHours())\n" +
+            "    time.min = addZero(date.getMinutes())\n" +
+            "    time.s = addZero(date.getSeconds())\n" +
+            "\n" +
+            "    return {\n" +
+            "        offset: time.d - 24,\n" +
+            "        time: `${time.h}:${time.min}:${time.s}`\n" +
+            "    }\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 将UTC时间转换为本地时间字符串，支持格式 yyyy-mm-dd hh:mm:ss\n" +
+            " *\n" +
+            " * @method toLocaleStringByDate\n" +
+            " * @param {string} timeStr 源时间 形如'yyyy-mm-dd hh:mm:ss'\n" +
+            " * @param {string} type 当type为mmDDyy，返回格式为‘mm-dd-yyyy HH:mm:ss’\n" +
+            " * @example\n" +
+            " * toLocaleStringByDate('2019-09-10 10:10:10')\n" +
+            " * \"2019-09-10 18:10:10\"\n" +
+            " * toLocaleStringByDate('2019-09-10 10:10:10','mmDDyy')\n" +
+            " * \"09-10-2019 18:10:10\"\n" +
+            " * @returns {string} 本地时间字符串形如'yyyy-mm-dd hh:mm:ss'\n" +
+            " */\n" +
+            "function toLocaleStringByDate(timeStr, type = 'str') {\n" +
+            "    const time = {}\n" +
+            "\n" +
+            "    let newTime = timeStr.split(' ');\n" +
+            "    let dateList = newTime[0].split('-');\n" +
+            "    let timeList = newTime[1].split(':');\n" +
+            "\n" +
+            "    let utcDate = Date.UTC(dateList[0], dateList[1] - 1, dateList[2], timeList[0], timeList[1], timeList[2]);\n" +
+            "    let date = new Date(utcDate);\n" +
+            "\n" +
+            "    time.y = date.getFullYear()\n" +
+            "    time.m = addZero(date.getMonth() + 1)\n" +
+            "    time.d = addZero(date.getDate())\n" +
+            "    time.h = addZero(date.getHours())\n" +
+            "    time.min = addZero(date.getMinutes())\n" +
+            "    time.s = addZero(date.getSeconds())\n" +
+            "    if (type === 'mmDDyy') {\n" +
+            "        return `${time.m}-${time.d}-${time.y} ${time.h}:${time.min}:${time.s}`\n" +
+            "    }\n" +
+            "    return `${time.y}-${time.m}-${time.d} ${time.h}:${time.min}:${time.s}`\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 将UTC时间转换为本地时间字符串,\n" +
+            " * 当格式为yyyy-mm-dd hh:mm:ss,返回值同toLocaleStringByDate\n" +
+            " * 当格式为hh:mm:ss 返回值同toLocaleStringByTime,\n" +
+            " * 当格式为yyyymmddThhmmssZ时，返回值为toLocaleStringByDate,可以带type参数修改返回值,\n" +
+            " * 当格式为mm-dd-yyyy hh:mm:ss,返回值同toLocaleStringByDate(time,'mmDDyy')\n" +
+            " *\n" +
+            " * @method toLocaleString\n" +
+            " * @param {string} timeStr 源时间\n" +
+            " * @param {string} type str 普通时间格式， mmDDyy\n" +
+            " * @example\n" +
+            " * 校验符合REG.DATE\n" +
+            " * toLocaleString('2019-09-10 10:10:10')\n" +
+            " * \"2019-09-10 18:10:10\"\n" +
+            " * 校验符合REG.TIME\n" +
+            " * toLocaleString('10:10:10')\n" +
+            " * {offset: 0, time: \"18:10:10\"}\n" +
+            " * 校验符合REG.DATE_Z\n" +
+            " * toLocaleString('20200407T085606Z')\n" +
+            " * \"2020-04-07 16:56:06\"\n" +
+            " * 校验符合REG.DATE_M_D_Y\n" +
+            " * toLocaleString('09-10-2019 18:10:10')\n" +
+            " * \"09-11-2019 02:10:10\"\n" +
+            " * @returns {string|object} 本地时间字符串形如'yyyy-mm-dd hh:mm:ss'，\n" +
+            " * 或包含转换后的时间字符串time和日期偏差offset 形如'{offset:6,time:'10:10:10'}'\n" +
+            " */\n" +
+            "function toLocaleString(timeStr, type='str') {\n" +
+            "    try {\n" +
+            "        if (REG.DATE.test(timeStr)) {\n" +
+            "            // 格式 yyyy-mm-dd hh:mm:ss\n" +
+            "            return toLocaleStringByDate(timeStr)\n" +
+            "        } else if (REG.TIME.test(timeStr)) {\n" +
+            "            // 格式 hh:mm:ss\n" +
+            "            return toLocaleStringByTime(timeStr)\n" +
+            "        } else if (REG.DATE_Z.test(timeStr)) {\n" +
+            "            // 格式 yyyymmddThhmmssZ\n" +
+            "            let newTime = timeStr.replace(/[^0-9]/g, '')\n" +
+            "            let date = `${newTime.slice(0, 4)}-${newTime.slice(4, 6)}-${newTime.slice(6, 8)}`\n" +
+            "            let time = `${newTime.slice(8, 10)}:${newTime.slice(10, 12)}:${newTime.slice(12, 14)}`\n" +
+            "            return toLocaleStringByDate(`${date} ${time}`, type)\n" +
+            "\n" +
+            "        } else if (REG.DATE_M_D_Y.test(timeStr)) {\n" +
+            "            let newTime = timeStr.split(' ');\n" +
+            "            let dateList = newTime[0].split('-');\n" +
+            "            let time = newTime[1];\n" +
+            "\n" +
+            "            return toLocaleStringByDate(`${dateList[2]}-${dateList[0]}-${dateList[1]} ${time}`, 'mmDDyy')\n" +
+            "        }\n" +
+            "    } catch(e){\n" +
+            "        console.error('Please enter date as yyyy-mm-dd hh:mm:ss')\n" +
+            "        return ''\n" +
+            "    }\n" +
+            "    console.error('Please enter date as yyyy-mm-dd hh:mm:ss')\n" +
+            "\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 获取当前浏览器客户端的时区（+0800为东八区）\n" +
+            " *\n" +
+            " * @method getTimezoon\n" +
+            " * @example\n" +
+            " * 当前为正八区\n" +
+            " * getTimezoon()\n" +
+            " * \"+0800\"\n" +
+            " * @returns {string} such as +0000 +0545(精确到分)\n" +
+            " */\n" +
+            "function getTimezoon() {\n" +
+            "    let timezoonOffset = new Date().getTimezoneOffset();\n" +
+            "    const flag = timezoonOffset > 0 ? '-' : '+';\n" +
+            "\n" +
+            "    timezoonOffset = Math.abs(timezoonOffset);\n" +
+            "\n" +
+            "    const hours = Math.floor(timezoonOffset / 60);\n" +
+            "    const minute = timezoonOffset % 60;\n" +
+            "    return flag + addZero(hours) + addZero(minute);\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 格式化时间为对象形式\n" +
+            " * 接收Date、数字或字符串格式的UTC时间、UTC时间*1000（单位秒）\n" +
+            " * 转换为时间对象，参数无效时返回空对象\n" +
+            " *\n" +
+            " * @method dateToObject\n" +
+            " * @param {Object | String | Number} param 时间\n" +
+            " * @example\n" +
+            " * dateToObject(new Date())\n" +
+            " * {\n" +
+            " *     day:13\n" +
+            " *     hour:11\n" +
+            " *     minute:\"00\"\n" +
+            " *     month:\"04\"\n" +
+            " *     second:50\n" +
+            " *     year:2020\n" +
+            " * }\n" +
+            " * dateToObject('2020/01/01 10:10:10')\n" +
+            " * {\n" +
+            " *     day:\"01\"\n" +
+            " *     hour:10\n" +
+            " *     minute:10\n" +
+            " *     month:\"01\"\n" +
+            " *     second:10\n" +
+            " *     year:2020\n" +
+            " * }\n" +
+            " * @returns {object} 日期结果对象或空对象\n" +
+            " */\n" +
+            "function dateToObject(param) {\n" +
+            "    let date = null\n" +
+            "\n" +
+            "    if (typeof param === 'object') {\n" +
+            "        date = param;\n" +
+            "    } else if (typeof param === 'string') {\n" +
+            "        if (param.toString().length === 13) {\n" +
+            "            date = new Date(param.replace(/-/g, '/'));\n" +
+            "        } else if (param.toString().length === 10) {\n" +
+            "            date = new Date(param * 1000);\n" +
+            "        } else {\n" +
+            "            date = new Date(param.replace(/-/g, '/'));\n" +
+            "        }\n" +
+            "    } else if (typeof param === 'number') {\n" +
+            "        date = new Date(param);\n" +
+            "    }\n" +
+            "\n" +
+            "    if (!date || isNaN(date.getFullYear())) {\n" +
+            "        return {};\n" +
+            "    }\n" +
+            "\n" +
+            "    const dateObj = {\n" +
+            "        year: date.getFullYear(),\n" +
+            "        month: addZero(date.getMonth() + 1),\n" +
+            "        day: addZero(date.getDate()),\n" +
+            "        hour: addZero(date.getHours()),\n" +
+            "        minute: addZero(date.getMinutes()),\n" +
+            "        second: addZero(date.getSeconds())\n" +
+            "    }\n" +
+            "\n" +
+            "    return dateObj\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 将毫秒时间转换为本地时间字符串，支持格式毫秒 //todo 方法重复 同上面方法 删除\n" +
+            " *\n" +
+            " * @method getDateWeek\n" +
+            " * @param {string} timeStr 源时间，毫秒格式 Date可接受的参数\n" +
+            " * @param {type} timeStr 时间格式'yyyy-mm-dd','hh:mm:ss'\n" +
+            " * @example\n" +
+            " * toLocaleStringByMs(new Date())\n" +
+            " * \"2020-04-13 10:54:55\"\n" +
+            " * toLocaleStringByMs(new Date(),'yyyy-mm-dd')\n" +
+            " * \"2020-04-13\"\n" +
+            " * toLocaleStringByMs(new Date(),'hh:mm')\n" +
+            " * \"2020-04-13 10:55:15\"\n" +
+            " * toLocaleStringByMs(new Date(),'hh:mm:ss')\n" +
+            " * \"10:55:18\"\n" +
+            " * @returns {string} 返回格式如yyyy-mm-dd hh:mm:ss\n" +
+            " */\n" +
+            "function toLocaleStringByMs(timeStr,type) {\n" +
+            "    const time = {};\n" +
+            "    if(!timeStr){\n" +
+            "       return ''\n" +
+            "    }\n" +
+            "    let date = new Date(timeStr);\n" +
+            "\n" +
+            "    time.y = date.getFullYear()\n" +
+            "    time.m = addZero(date.getMonth() + 1)\n" +
+            "    time.d = addZero(date.getDate())\n" +
+            "    time.h = addZero(date.getHours())\n" +
+            "    time.min = addZero(date.getMinutes())\n" +
+            "    time.s = addZero(date.getSeconds())\n" +
+            "    if(type === 'yyyy-mm-dd'){\n" +
+            "        return `${time.y}-${time.m}-${time.d}`\n" +
+            "    }else if(type === 'hh:mm:ss'){\n" +
+            "        return `${time.h}:${time.min}:${time.s}`\n" +
+            "    }\n" +
+            "    return `${time.y}-${time.m}-${time.d} ${time.h}:${time.min}:${time.s}`\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 判断星期几,返回'xxxx年xx月xx日 星期X'\n" +
+            " *\n" +
+            " * @method getDateWeek\n" +
+            " * @param  {string} data 时间字符串 格式 'YY-mm-dd或YYYY-mm-dd'\n" +
+            " * @example\n" +
+            " * getDateWeek('2010-10-10')\n" +
+            " * \"2010年10月10日 星期日\"\n" +
+            " * getDateWeek('20-10-10')\n" +
+            " * \"20年10月10日 星期六\"\n" +
+            " * @return {string} str  规范后时间字符串 格式 'xxxx年xx月xx日 星期X'\n" +
+            " */\n" +
+            "function getDateWeek(date) {\n" +
+            "    let dateSplitArr = date.split('-');\n" +
+            "    let str = dateSplitArr[0] + '年' + dateSplitArr[1] + '月' + dateSplitArr[2] + '日';\n" +
+            "    let week = new Date(date).getDay();\n" +
+            "    switch (week) {\n" +
+            "        case 0:\n" +
+            "            str += ' 星期日';\n" +
+            "            break;\n" +
+            "        case 1:\n" +
+            "            str += ' 星期一';\n" +
+            "            break;\n" +
+            "        case 2:\n" +
+            "            str += ' 星期二';\n" +
+            "            break;\n" +
+            "        case 3:\n" +
+            "            str += ' 星期三';\n" +
+            "            break;\n" +
+            "        case 4:\n" +
+            "            str += ' 星期四';\n" +
+            "            break;\n" +
+            "        case 5:\n" +
+            "            str += ' 星期五';\n" +
+            "            break;\n" +
+            "        case 6:\n" +
+            "            break;\n" +
+            "        default:\n" +
+            "            str += ' 星期六';\n" +
+            "            break;\n" +
+            "    }\n" +
+            "    return str;\n" +
+            "}\n" +
+            "\n" +
+            "/**\n" +
+            " * 比较日期大小（结束时间是否大于开始时间）\n" +
+            " *\n" +
+            " * @method compareDate\n" +
+            " * @param {any} start  开始日期\n" +
+            " * @param {any} end    结束日期\n" +
+            " * @example\n" +
+            " * 参数为new Date可接受的参数\n" +
+            " * compareDate('2010-10-10','2010-10-10')    false\n" +
+            " * compareDate('2010-10-11','2010-10-12')    true\n" +
+            " * compareDate('2010-10-11',new Date())      true\n" +
+            " * compareDate('2010-10-11',1586251615416)   true\n" +
+            " * @return {Boolean} 结束是否大于开始\n" +
+            " */\n" +
+            "function compareDate(start,end) {\n" +
+            "    return new Date(start).getTime() < new Date(end).getTime()\n" +
+            "}\n" +
+            "\n" +
+            "let timeUtils =  {\n" +
+            "    dateFormat,\n" +
+            "    addZero,\n" +
+            "    startAndEndTime,\n" +
+            "    dateToObject,\n" +
+            "    valifyTime,\n" +
+            "    isTimeContainTime,\n" +
+            "    toISOStringByTime,\n" +
+            "    toISOStringByDate,\n" +
+            "    toISOString,\n" +
+            "    toLocaleStringByTime,\n" +
+            "    toLocaleStringByDate,\n" +
+            "    toLocaleString,\n" +
+            "    getTimezoon,\n" +
+            "    toLocaleStringByMs,\n" +
+            "    getDateWeek,\n" +
+            "    compareDate,\n" +
+            "}\n" +
+            "export {\n" +
+            "    dateFormat,\n" +
+            "    addZero,\n" +
+            "    startAndEndTime,\n" +
+            "    dateToObject,\n" +
+            "    valifyTime,\n" +
+            "    isTimeContainTime,\n" +
+            "    toISOStringByTime,\n" +
+            "    toISOStringByDate,\n" +
+            "    toISOString,\n" +
+            "    toLocaleStringByTime,\n" +
+            "    toLocaleStringByDate,\n" +
+            "    toLocaleString,\n" +
+            "    getTimezoon,\n" +
+            "    toLocaleStringByMs,\n" +
+            "    getDateWeek,\n" +
+            "    compareDate,\n" +
+            "}\n" +
+            "export default timeUtils\n" +
+            "```",
+    },
 ]
