@@ -11,6 +11,7 @@ export default [
             '## 1.5 [移动端vue手势库](https://github.com/gggso/vue-finger)\n' +
             '## 1.6 [搭建虚拟服务器调用接口](https://github.com/typicode/json-server)\n' +
             '## 1.7 [vue大屏自适应组件](https://github.com/Alfred-Skyblue/v-scale-screen)\n' +
-            '## 1.8 [下载文件组件](https://github.com/kennethjiang/js-file-download)'
+            '## 1.8 [下载文件组件](https://github.com/kennethjiang/js-file-download)\n' +
+            '## 1.9 [vue编辑预览md组件](https://code-farmer-i.github.io/vue-markdown-editor/zh/)'
     }
 ]
