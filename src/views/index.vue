@@ -11,15 +11,15 @@
           <el-main v-if="info.startsWith('http')" style="padding: 0;height: 100%;overflow: hidden">
             <iframe id="iframe" :src="info" width="100%" height="100%" frameborder="0"></iframe>
           </el-main>
-          <el-main v-if="info.startsWith('a-')" style="padding: 0;height: 100%;overflow: auto">
+          <el-main v-show="info.startsWith('a-')" style="padding: 0;height: 100%;overflow: auto">
             <div style="padding: 20px">
               <note :info="info"></note>
             </div>
           </el-main>
-          <el-main v-if="info==='b-vue代码'" style="padding: 0;height: 100%;overflow: auto">
+          <el-main v-show="info==='b-vue代码'" style="padding: 0;height: 100%;overflow: auto">
             <vue-code-view></vue-code-view>
           </el-main>
-          <el-main v-if="info==='b-html代码'" style="padding: 0;height: 100%;overflow: auto">
+          <el-main v-show="info==='b-html代码'" style="padding: 0;height: 100%;overflow: auto">
             <html-code-view></html-code-view>
           </el-main>
           

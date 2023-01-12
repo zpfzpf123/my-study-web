@@ -49,17 +49,19 @@ export default {
       } else if (val === 'a-常用组件') {
         this.Notes = ZujianNotes
       }
-      if (val.startsWith('a-')) {
-        this.$notify({
-          title: '提示',
-          message: `该页面共有${this.Notes.length}条数据`,
-          type: 'success',
-          showClose: false,
-          duration: 2000
-        });
-        this.listName = ''
-        this.activeName = ''
-      }
+      this.$nextTick(() => {
+        if (val.startsWith('a-')) {
+          this.$notify({
+            title: '提示',
+            message: `该页面共有${this.Notes.length}条数据`,
+            type: 'success',
+            showClose: false,
+            duration: 2000
+          });
+          this.listName = ''
+          this.activeName = ''
+        }
+      })
     }
   }
 }
@@ -77,6 +79,7 @@ export default {
   margin: 0;
   max-width: none;
 }
+
 //
 /deep/ .v-md-textarea-editor {
   display: none;
