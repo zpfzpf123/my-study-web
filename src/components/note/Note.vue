@@ -2,11 +2,10 @@
   <div class="js-note">
     <el-backtop target=".js-note" style="position: absolute;z-index: 9999;"></el-backtop>
     <el-input placeholder="请输入你要查询的标题" v-model="listName"></el-input>
-    <el-collapse v-model="activeName">
+    <el-collapse v-model="activeName" accordion>
       <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
         <v-md-editor left-toolbar="fullscreen toc" right-toolbar="" :include-level="[1,2,3,4]"
-                     v-model="item.content"
-                     height="600px"></v-md-editor>
+                     v-model="item.content" style="max-height: 600px"></v-md-editor>
       </el-collapse-item>
     </el-collapse>
   </div>
