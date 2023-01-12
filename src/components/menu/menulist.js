@@ -206,6 +206,11 @@ export default [
                         index: '9-1',
                         url: 'https://es6.ruanyifeng.com/'
                     },
+                    {
+                        name:"lodash",
+                        index: '9-2',
+                        url: 'https://www.lodashjs.com/'
+                    },
                 ]
             }
         ]

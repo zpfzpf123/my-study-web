@@ -7,12 +7,6 @@
 <script>
 export default {
   name: "code-view",
-  props:{
-    type:{
-      type: String,
-      required: ''
-    }
-  }
 }
 </script>
 

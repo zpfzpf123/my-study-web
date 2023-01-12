@@ -17,11 +17,12 @@
             </div>
           </el-main>
           <el-main v-if="info==='b-vue代码'" style="padding: 0;height: 100%;overflow: auto">
-            <vue-code-view :type="info"></vue-code-view>
+            <vue-code-view></vue-code-view>
           </el-main>
           <el-main v-if="info==='b-html代码'" style="padding: 0;height: 100%;overflow: auto">
             <html-code-view></html-code-view>
           </el-main>
+          
         </div>
       </split>
     </el-container>

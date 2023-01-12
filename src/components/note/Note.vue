@@ -4,7 +4,7 @@
     <el-input placeholder="请输入你要查询的标题" v-model="listName"></el-input>
     <el-collapse v-model="activeName">
       <el-collapse-item v-for="item in newNotes" :key="item.name" :title="item.title" :name="item.name">
-        <v-md-editor left-toolbar="fullscreen" right-toolbar="" :include-level="[1,2,3,4]"
+        <v-md-editor left-toolbar="fullscreen toc" right-toolbar="" :include-level="[1,2,3,4]"
                      v-model="item.content"
                      height="600px"></v-md-editor>
       </el-collapse-item>
@@ -77,21 +77,12 @@ export default {
   margin: 0;
   max-width: none;
 }
-
+//
 /deep/ .v-md-textarea-editor {
   display: none;
 }
 
 /deep/ .v-md-editor__editor-wrapper {
   display: none;
-}
-
-/deep/ .v-md-editor__preview-wrapper {
-  flex: none;
-  width: 100%;
-}
-
-/deep/ .v-md-editor__left-area {
-  width: 200px !important;
 }
 </style>
