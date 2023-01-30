@@ -294,5 +294,20 @@ export default [
                 ]
             },
         ]
+    },
+    {
+        index: '13',
+        name:"表单生成设计器",
+        childrenList: [
+            {
+                childrenList: [
+                    {
+                        name:"elementui生成器",
+                        index: '13-1',
+                        url: 'https://mrhj.gitee.io/form-generator/#/'
+                    },
+                ]
+            },
+        ]
     }
 ]

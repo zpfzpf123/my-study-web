@@ -22,7 +22,7 @@
           <el-main v-show="info==='b-html代码'" style="padding: 0;height: 100%;overflow: auto">
             <html-code-view></html-code-view>
           </el-main>
-          
+
         </div>
       </split>
     </el-container>
