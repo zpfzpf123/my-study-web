@@ -5,8 +5,9 @@ export default [
         content:'# 1.前端实用组件\n' +
             '\n' +
             '## 1.1 [vue无缝滚动组件 vue2 ](https://chenxuan0000.github.io/vue-seamless-scroll/)  [vue3](https://doc.wssio.com/opensource/vue3-seamless-scroll/#%E5%BC%80%E5%A7%8B)\n'  +
+            '\n' +'要想让他实现无缝滚动，首先看你页面的滚动内容高度是多少，比如是500px,在不滚动的时候看多少行数据占满这个高度，假设需要10行数据显示在页面上，那么每行的高度需要设置为大于500/10=50px,这样才可以实现无缝滚动，一般就设置为50px,通过class-option中的属性limitMoveNum判断是否滚动，比如这里就可以设置为10，超出10行意味着滚动，小于等于就不滚动\n' +
             '\n' +
-            '要想让他实现无缝滚动，首先看你页面的滚动内容高度是多少，比如是500px,在不滚动的时候看多少行数据占满这个高度，假设需要10行数据显示在页面上，那么每行的高度需要设置为大于500/10=50px,这样才可以实现无缝滚动，一般就设置为50px,通过v-if判断少于10行就不展示，多余10行就滚动\n'+'```vue\n' +
+            '```vue\n' +
             '<template>\n' +
             '  <div id="jobStatistics">\n' +
             '    <el-row :gutter="10" type="flex" align="middle" style="height: 75%">\n' +
@@ -24,7 +25,7 @@ export default [
             '          <th v-for="item in tableName">{{item}}</th>\n' +
             '          </thead>\n' +
             '        </table>\n' +
-            '        <vue-seamless-scroll :data="testArray" :class-option="testArray.length>10?optionHover:{autoPlay:false}" class="seamless-warp">\n' +
+            '        <vue-seamless-scroll :data="testArray" :class-option="optionHover" class="seamless-warp">\n' +
             '          <ul>\n' +
             '            <li v-for="(item,index) in testArray" class="liStyle" :class="{ bg: index%2===0 }">\n' +
             '              <span :title="index+1" class="title1 text_align">{{ index + 1 }}</span>\n' +
@@ -70,6 +71,7 @@ export default [
             '    //滚动表格的配置项\n' +
             '    optionHover() {\n' +
             '      return {\n' +
+            '        limitMoveNum:10,//数据超出10行才滚动\n' +
             '        hoverStop: true, // 是否开启鼠标悬停stop\n' +
             '        direction: 1, // 0向下 1向上 2向左 3向右\n' +
             '        step: .5,// 数值越大速度滚动越快\n' +
@@ -140,7 +142,8 @@ export default [
             '  background: gainsboro;\n' +
             '}\n' +
             '</style>\n' +
-            '```'+'\n'+
+            '```'
+            +'\n'+
             "\n" +
             '## 1.2 [vue-cropper裁剪图片插件](https://github.com/xyxiao001/vue-cropper)\n' +
             '## 1.3 [自定义表格](https://vxetable.cn/#/table/start/install)\n' +
