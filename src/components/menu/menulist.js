@@ -323,6 +323,15 @@ export default [
                     },
                 ]
             },
+            {
+                childrenList: [
+                    {
+                        name: "chatgpt智能",
+                        index: '14-3',
+                        list:'chatgpt'
+                    },
+                ]
+            },
         ]
     }
 ]

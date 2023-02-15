@@ -17,11 +17,11 @@ import VueMarkdownEditor from '@kangc/v-md-editor';
 import createCopyCodePlugin from '@kangc/v-md-editor/lib/plugins/copy-code/index';
 import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css';
 import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
+import hljs from 'highlight.js';
 
 VueMarkdownEditor.use(createLineNumbertPlugin());
 VueMarkdownEditor.use(createCopyCodePlugin());
 // highlightjs
-import hljs from 'highlight.js';
 
 VMdEditor.use(githubTheme, {
   Hljs: hljs,

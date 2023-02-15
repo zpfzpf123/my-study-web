@@ -22,6 +22,9 @@
           <el-main v-show="info==='b-html代码'" style="padding: 0;height: 100%;overflow: auto">
             <html-code-view></html-code-view>
           </el-main>
+          <el-main v-show="info==='chatgpt'" style="padding: 0;height: 100%;overflow: auto">
+            <chatgpt></chatgpt>
+          </el-main>
 
         </div>
       </split>
@@ -34,6 +37,7 @@ import NoIframe from "@/components/menu/noIframe";
 import Note from "@/components/note/Note";
 import VueCodeView from "@/components/codeView/vue-code-view";
 import HtmlCodeView from "@/components/codeView/html-code-view";
+import Chatgpt from "@/components/chatgpt/chatgpt";
 
 export default {
   name: "index",
@@ -44,6 +48,7 @@ export default {
     }
   },
   components: {
+    Chatgpt,
     HtmlCodeView,
     VueCodeView,
     Note,
