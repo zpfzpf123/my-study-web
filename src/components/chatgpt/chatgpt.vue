@@ -47,7 +47,7 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       });
       let myHeaders = new Headers();
-      myHeaders.append("Authorization", "Bearer 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");
+      myHeaders.append("Authorization", "Bearer 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");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Accept", "*/*");
       myHeaders.append("Host", "api.openai.com");
