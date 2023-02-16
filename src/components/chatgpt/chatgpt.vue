@@ -39,7 +39,7 @@ export default {
     return {
       textarea:'',
       result:'',
-      keyVal:'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'
+      keyVal:'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'
     }
   },
   methods: {
