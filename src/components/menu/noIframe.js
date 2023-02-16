@@ -9,5 +9,4 @@ export default [
     'http://chartlib.datains.cn',
     'http://datav.jiaminghi.com/guide/',
     'https://echarts.apache.org/zh/index.html',
-    'https://www.lodashjs.com/',
 ]

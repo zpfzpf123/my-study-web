@@ -319,7 +319,7 @@ export default [
                     {
                         name: "chatgpt",
                         index: '14-2',
-                        url: 'https://chatgpt.sbaliyun.com/vip.html'
+                        url: 'https://cveoy.com/payvip.html'
                     },
                 ]
             },
