@@ -9,5 +9,6 @@ export default [
     'http://chartlib.datains.cn',
     'http://datav.jiaminghi.com/guide/',
     'https://echarts.apache.org/zh/index.html',
-    'https://www.lodashjs.com/'
+    'https://www.lodashjs.com/',
+    'https://chatgpt.sbaliyun.com/vip.html'
 ]

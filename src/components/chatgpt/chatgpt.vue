@@ -1,6 +1,12 @@
 <template>
   <div id="chatgpt">
     <div class="top">
+      <span class="title1">key：</span>
+      <el-input
+          class="input"
+          placeholder="请输入key"
+          v-model="keyVal">
+      </el-input>
       <span class="title1">问题：</span>
       <el-input
           class="input"
@@ -32,7 +38,8 @@ export default {
   data(){
     return {
       textarea:'',
-      result:''
+      result:'',
+      keyVal:''
     }
   },
   methods: {
@@ -47,7 +54,7 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       });
       let myHeaders = new Headers();
-      myHeaders.append("Authorization", "Bearer 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");
+      myHeaders.append("Authorization", `Bearer ${this.keyVal}`);
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Accept", "*/*");
       myHeaders.append("Host", "api.openai.com");
@@ -109,9 +116,13 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+  }
+  .top{
+    height: 20%;
   }
   .input{
-    width: 88%;
+    width: 93%;
   }
 }
 </style>
