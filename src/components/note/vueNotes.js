@@ -351,5 +351,98 @@ export default [
             "\n" +
             "\n" +
             "\n"
+    },
+    {
+        name:'2',
+        title:'vue大屏动态配置组件数量、每个组件的占比和位置代码示例',
+        content:"以下是使用Vue.js创建一个大屏组件，并且可以通过传递props来配置组件数量、每个组件的占比和位置的代码示例：\n" +
+            "\n" +
+            "```js\n" +
+            "<template>\n" +
+            "  <div class=\"big-screen\">\n" +
+            "    <div v-for=\"(item, index) in screenList\" :key=\"index\" :style=\"getStyle(item)\">\n" +
+            "      <slot :name=\"item.name\"></slot>\n" +
+            "    </div>\n" +
+            "  </div>\n" +
+            "</template>\n" +
+            "\n" +
+            "<script>\n" +
+            "export default {\n" +
+            "  name: 'BigScreen',\n" +
+            "  props: {\n" +
+            "    screenList: {\n" +
+            "      type: Array,\n" +
+            "      required: true,\n" +
+            "      default: () => []\n" +
+            "    }\n" +
+            "  },\n" +
+            "  methods: {\n" +
+            "    getStyle(item) {\n" +
+            "      return {\n" +
+            "        position: 'absolute',\n" +
+            "        left: `${item.left}%`,\n" +
+            "        top: `${item.top}%`,\n" +
+            "        width: `${item.width}%`,\n" +
+            "        height: `${item.height}%`\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}\n" +
+            "</script>\n" +
+            "\n" +
+            "<style>\n" +
+            ".big-screen {\n" +
+            "  position: relative;\n" +
+            "  width: 100%;\n" +
+            "  height: 100%;\n" +
+            "}\n" +
+            "</style>\n" +
+            "```\n" +
+            "\n" +
+            "在这个示例中，我们定义了一个名为`BigScreen`的组件，并且传递了一个名为`screenList`的props，它是一个数组，用来指定大屏组件的个数、占比和位置。\n" +
+            "\n" +
+            "在组件的模板中，我们使用了`v-for`来遍历`screenList`数组，并为每个大屏组件指定样式（位置和大小），然后使用插槽来插入具体的大屏组件内容。\n" +
+            "\n" +
+            "在组件的方法中，我们定义了一个名为`getStyle`的方法，它接受一个参数`item`，并返回一个包含位置和大小信息的样式对象，这个样式对象会被应用到每个大屏组件的容器元素上。\n" +
+            "\n" +
+            "现在让我们看一个如何使用这个`BigScreen`组件的示例：\n" +
+            "\n" +
+            "```js\n" +
+            "<template>\n" +
+            "  <div style=\"height:100%\">\n" +
+            "    <big-screen :screen-list=\"screenList\">\n" +
+            "      <template #screen1>\n" +
+            "        <div>第一个大屏内容</div>\n" +
+            "      </template>\n" +
+            "      <template #screen2>\n" +
+            "        <div>第二个大屏内容</div>\n" +
+            "      </template>\n" +
+            "    </big-screen>\n" +
+            "  </div>\n" +
+            "</template>\n" +
+            "\n" +
+            "<script>\n" +
+            "import BigScreen from './BigScreen.vue'\n" +
+            "\n" +
+            "export default {\n" +
+            "  name: 'App',\n" +
+            "  components: {\n" +
+            "    BigScreen\n" +
+            "  },\n" +
+            "  data() {\n" +
+            "    return {\n" +
+            "      screenList: [\n" +
+            "        { name: 'screen1', left: 0, top: 0, width: 50, height: 100 },\n" +
+            "        { name: 'screen2', left: 50, top: 0, width: 50, height: 100 }\n" +
+            "      ]\n" +
+            "    }\n" +
+            "  }\n" +
+            "}\n" +
+            "</script>\n" +
+            "```\n" +
+            "\n" +
+            "在这个示例中，我们在父组件中使用了`BigScreen`组件，并且传递了一个名为`screenList`的props，它包含了两个元素，分别代表了两个大屏组件的位置、大小和内容名称。\n" +
+            "\n" +
+            "我们也定义了两个插槽（`#screen1`和`#screen2`），它们分别对应了`screenList`数组中的两个元素，表示在第一个大屏和第二个大屏"
     }
 ]
