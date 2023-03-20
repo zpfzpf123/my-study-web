@@ -271,6 +271,11 @@ export default [
                         index: '11-4',
                         list: 'a-常用组件'
                     },
+                    {
+                        name: "ai",
+                        index: '11-5',
+                        list: 'a-ai'
+                    },
                 ]
             },
         ]

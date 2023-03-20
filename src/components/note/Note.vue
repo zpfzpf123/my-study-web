@@ -16,7 +16,7 @@ import JsNotes from "@/components/note/jsNotes";
 import CssNotes from "@/components/note/cssNotes";
 import VueNotes from "@/components/note/vueNotes";
 import ZujianNotes from "@/components/note/zujianNotes";
-
+import ai from "@/components/note/ai"
 export default {
   name: "Note",
   props: {
@@ -39,15 +39,14 @@ export default {
   },
   watch: {
     info(val) {
-      if (val === 'a-js') {
-        this.Notes = JsNotes
-      } else if (val === 'a-Vue') {
-        this.Notes = VueNotes
-      } else if (val === 'a-css') {
-        this.Notes = CssNotes
-      } else if (val === 'a-常用组件') {
-        this.Notes = ZujianNotes
+      const notesMap = {
+        'a-js': JsNotes,
+        'a-Vue': VueNotes,
+        'a-css': CssNotes,
+        'a-常用组件': ZujianNotes,
+        'a-ai': ai
       }
+      this.Notes = notesMap[val] || JsNotes
       this.$nextTick(() => {
         if (val.startsWith('a-')) {
           this.$notify({
