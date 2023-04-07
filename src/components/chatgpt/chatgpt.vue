@@ -18,7 +18,6 @@
       <el-button @click="sendTheProblem">提交</el-button>
     </div>
     <div class="bottom">
-      <span class="title">结果：</span>
       <!-- <el-input
         class="input"
         type="textarea"
@@ -45,7 +44,7 @@ export default {
     return {
       textarea: "",
       result: "",
-      keyVal: "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",
+      keyVal: "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",
     };
   },
   methods: {
@@ -69,7 +68,8 @@ export default {
         model: "gpt-3.5-turbo",
         messages:[
         {"role": "user", "content": val},
-    ]
+    ],
+        user:'org-httqfIp9EO7iKtNXX8qZjaO4'
         // prompt: val,
         // temperature: 0,
         // max_tokens: 4000,
