@@ -97,6 +97,12 @@ export default {
           }
         })
         .catch((error) => {
+          loading.close();
+          this.$message({
+              showClose: true,
+              message: '获取失败',
+              type: "error",
+            });
           console.log(error);
         });
     },
