@@ -1,18 +1,35 @@
 <template>
   <div>
     <el-input v-model="searchList" placeholder="请输入菜单标题"></el-input>
-    <el-menu class="el-menu-vertical-demo" @select="selectList" style="border: none" :default-active="index"
-             :default-openeds="activeIndex">
-      <el-submenu v-for="(item,index) in currentList" :key="index" :index="item.index">
+    <el-menu
+      class="el-menu-vertical-demo"
+      @select="selectList"
+      style="border: none"
+      :default-active="index"
+      :default-openeds="activeIndex"
+    >
+      <el-submenu
+        v-for="(item, index) in currentList"
+        :key="index"
+        :index="item.index"
+      >
         <template slot="title">
-          <img style="width: 24px;height: 24px" :src="require(`../../assets/icon/${item.name}.png`)" alt="">
+          <img
+            style="width: 24px; height: 24px"
+            :src="require(`../../assets/icon/${item.name}.png`)"
+            alt=""
+          />
           <span style="margin-left: 5px">{{ item.name }}</span>
         </template>
-        <el-menu-item-group v-for="(list,ind) in item.childrenList" :key="ind">
+        <el-menu-item-group v-for="(list, ind) in item.childrenList" :key="ind">
           <template slot="title" v-if="list.name">
-            <span style="font-size: 20px;color: #0AAEB3">{{ list.name }}</span>
+            <span style="font-size: 20px; color: #0aaeb3">{{ list.name }}</span>
           </template>
-          <el-menu-item v-for="(data,key) in list.childrenList" :key="key" :index="data.index">{{ data.name }}
+          <el-menu-item
+            v-for="(data, key) in list.childrenList"
+            :key="key"
+            :index="data.index"
+            >{{ data.name }}
           </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
@@ -28,78 +45,91 @@ export default {
   data() {
     return {
       list: menuList,
-      searchList: '',
-      index: '',
-      activeIndex: ['1']
-    }
+      searchList: "",
+      index: "",
+      activeIndex: ["1"],
+    };
   },
   mounted() {
-    setTimeout(()=>{
-      this.index='1-1'
-    },1000)
+    setTimeout(() => {
+      this.index = "1-1";
+    }, 1000);
   },
   computed: {
     currentList() {
-      let list = this.list.filter(list => {
+      let list = this.list.filter((list) => {
         if (list.name.toLowerCase().includes(this.searchList.toLowerCase())) {
-          return true
+          return true;
         }
-      })
+      });
       if (list.length) {
-        this.activeIndex = []
-        this.index = ''
-        return list
+        this.activeIndex = [];
+        this.index = "";
+        return list;
       } else {
-        let vals = []
-        this.activeIndex = []
-        this.list.some(item => {
-          return item.childrenList.some(val => {
+        let vals = [];
+        this.activeIndex = [];
+        this.list.some((item) => {
+          return item.childrenList.some((val) => {
             if (val.name) {
-              if (val.name.toLowerCase().includes(this.searchList.toLowerCase())) {
-                vals.push(item)
-                this.activeIndex.push(item.index)
-                this.index = val.childrenList[0].index
-                return true
+              if (
+                val.name.toLowerCase().includes(this.searchList.toLowerCase())
+              ) {
+                vals.push(item);
+                this.activeIndex.push(item.index);
+                this.index = val.childrenList[0].index;
+                return true;
               }
             } else if (val.childrenList.length) {
-              return val.childrenList.some(value => {
-                if (value.name.toLowerCase().includes(this.searchList.toLowerCase())) {
-                  vals.push(item)
-                  this.activeIndex.push(item.index)
-                  this.index = value.index
-                  return true
+              return val.childrenList.some((value) => {
+                if (
+                  value.name
+                    .toLowerCase()
+                    .includes(this.searchList.toLowerCase())
+                ) {
+                  vals.push(item);
+                  this.activeIndex.push(item.index);
+                  this.index = value.index;
+                  return true;
                 }
-              })
+              });
             }
-          })
-        })
-        return vals
+          });
+        });
+        return vals;
       }
-    }
+    },
   },
   methods: {
     selectList(index) {
-      this.list.some(i => {
-        i.childrenList.some(item => {
-          item.childrenList.some(ite => {
+      this.list.some((i) => {
+        i.childrenList.some((item) => {
+          item.childrenList.some((ite) => {
             if (ite.index === index) {
-              ite.url && this.$emit('sendInfo', ite.url)
-              ite.list && this.$emit('sendInfo', ite.list)
-              return true
+              ite.url && this.$emit("sendInfo", ite.url);
+              ite.list && this.$emit("sendInfo", ite.list);
+              return true;
             }
-          })
-        })
-      })
-    }
-  }
-}
+          });
+        });
+      });
+    },
+  },
+};
 </script>
-
 <style scoped lang="less">
 /deep/ .el-submenu__icon-arrow {
   top: 59%;
 }
-/deep/ .el-submenu__title{
+/deep/ .el-submenu__title {
+  display: flex;
+  align-items: center;
+}
+</style>
+rrow {
+  top: 59%;
+}
+/deep/ .el-submenu__title {
   display: flex;
   align-items: center;
 }

@@ -444,5 +444,71 @@ export default [
             "在这个示例中，我们在父组件中使用了`BigScreen`组件，并且传递了一个名为`screenList`的props，它包含了两个元素，分别代表了两个大屏组件的位置、大小和内容名称。\n" +
             "\n" +
             "我们也定义了两个插槽（`#screen1`和`#screen2`），它们分别对应了`screenList`数组中的两个元素，表示在第一个大屏和第二个大屏"
+    },
+    {
+        name:'3',
+        title:'vue2+原生js实现上下无缝滚动，鼠标移入停止无缝滚动，可以鼠标滚轮控制滚动，鼠标移出可以继续上下无缝滚动',
+        content:"```js\n" +
+            "<template>\n" +
+            "  <div class=\"scroll-container\" @mouseenter=\"stopScroll\" @mouseleave=\"startScroll\" @wheel=\"onWheel\">\n" +
+            "    <div class=\"scroll-content\">\n" +
+            "      <div class=\"scroll-item\" v-for=\"item in scrollData\" :key=\"item\">{{ item }}</div>\n" +
+            "      <div class=\"scroll-item\" v-for=\"item in scrollData\" :key=\"item\">{{ item }}</div>\n" +
+            "    </div>\n" +
+            "  </div>\n" +
+            "</template>\n" +
+            "\n" +
+            "<script>\n" +
+            "export default {\n" +
+            "  name: 'SeamlessScroll',\n" +
+            "  data() {\n" +
+            "    return {\n" +
+            "      scrollData: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'],\n" +
+            "      scrollInterval: null,\n" +
+            "      scrollSpeed: 1,\n" +
+            "    }\n" +
+            "  },\n" +
+            "  mounted() {\n" +
+            "    this.startScroll();\n" +
+            "  },\n" +
+            "  beforeDestroy() {\n" +
+            "    clearInterval(this.scrollInterval);\n" +
+            "  },\n" +
+            "  methods: {\n" +
+            "    startScroll() {\n" +
+            "      this.scrollInterval = setInterval(() => {\n" +
+            "        if (this.$el.scrollTop >= this.$el.scrollHeight / 2) {\n" +
+            "          this.$el.scrollTop = 0;\n" +
+            "        } else {\n" +
+            "          this.$el.scrollTop += this.scrollSpeed;\n" +
+            "        }\n" +
+            "      }, 10);\n" +
+            "    },\n" +
+            "    stopScroll() {\n" +
+            "      clearInterval(this.scrollInterval);\n" +
+            "    },\n" +
+            "    onWheel(event) {\n" +
+            "      event.preventDefault();\n" +
+            "      this.$el.scrollTop += event.deltaY;\n" +
+            "    },\n" +
+            "  },\n" +
+            "}\n" +
+            "</script>\n" +
+            "\n" +
+            "<style scoped>\n" +
+            ".scroll-container {\n" +
+            "  height: 200px;\n" +
+            "  overflow: hidden;\n" +
+            "}\n" +
+            ".scroll-content {\n" +
+            "  display: flex;\n" +
+            "  flex-direction: column;\n" +
+            "}\n" +
+            ".scroll-item {\n" +
+            "  height: 50px;\n" +
+            "}\n" +
+            "</style>\n" +
+            "```\n" +
+            "\n"
     }
 ]
