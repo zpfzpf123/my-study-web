@@ -322,15 +322,6 @@ export default [
             {
                 childrenList: [
                     {
-                        name: "chatgpt",
-                        index: '14-2',
-                        url: 'https://cveoy.com/payvip.html'
-                    },
-                ]
-            },
-            {
-                childrenList: [
-                    {
                         name: "chatgpt智能",
                         index: '14-3',
                         list:'chatgpt'

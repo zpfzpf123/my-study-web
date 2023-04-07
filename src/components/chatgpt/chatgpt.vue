@@ -19,14 +19,21 @@
     </div>
     <div class="bottom">
       <span class="title">结果：</span>
-      <el-input
+      <!-- <el-input
         class="input"
         type="textarea"
         :rows="10"
         placeholder="结果"
         v-model="result"
       >
-      </el-input>
+      </el-input> -->
+      <v-md-editor
+        left-toolbar="fullscreen toc"
+        right-toolbar=""
+        :include-level="[1, 2, 3, 4]"
+        v-model="result"
+        style="max-height: 100vh"
+      ></v-md-editor>
     </div>
   </div>
 </template>
@@ -59,10 +66,13 @@ export default {
       myHeaders.append("Host", "api.openai.com");
       myHeaders.append("Connection", "keep-alive");
       let raw = JSON.stringify({
-        model: "text-davinci-003",
-        prompt: val,
-        temperature: 0,
-        max_tokens: 4000,
+        model: "gpt-3.5-turbo",
+        messages:[
+        {"role": "user", "content": val},
+    ]
+        // prompt: val,
+        // temperature: 0,
+        // max_tokens: 4000,
       });
 
       let requestOptions = {
@@ -72,18 +82,12 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://api.openai.com/v1/completions", requestOptions)
+      fetch("https://api.openai.com/v1/chat/completions", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           loading.close();
           if (!JSON.parse(result).error) {
-            if (JSON.parse(result).choices[0].text[0] === "?") {
-              this.result = JSON.parse(result)
-                .choices[0].text.slice(1)
-                .trimStart();
-            } else {
-              this.result = JSON.parse(result).choices[0].text.trimStart();
-            }
+              this.result = JSON.parse(result).choices[0].message.content.trimStart();
           } else {
             this.$message({
               showClose: true,
@@ -124,6 +128,20 @@ export default {
   .input {
     width: 93%;
   }
+}
+/deep/ .v-note-wrapper {
+  padding: 0;
+  margin: 0;
+  max-width: none;
+}
+
+//
+/deep/ .v-md-textarea-editor {
+  display: none;
+}
+
+/deep/ .v-md-editor__editor-wrapper {
+  display: none;
 }
 </style>
 
