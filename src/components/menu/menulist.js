@@ -323,8 +323,23 @@ export default [
                 childrenList: [
                     {
                         name: "chatgpt智能",
-                        index: '14-3',
+                        index: '14-1',
                         list:'chatgpt'
+                    },
+                    {
+                        name: "gptgo",
+                        index: '14-2',
+                        url:'https://gptgo.ai/?hl=zh&utm_source=futurepedia&&utm_medium=marketplace&&utm_campaign=futurepedia'
+                    },
+                    {
+                        name: "chatgpt中文调教指南",
+                        index: '14-3',
+                        url:'https://chatguide.plexpt.com/'
+                    },
+                    {
+                        name: "未来百科",
+                        index: '14-4',
+                        url:'https://www.futurepedia.io/'
                     },
                 ]
             },

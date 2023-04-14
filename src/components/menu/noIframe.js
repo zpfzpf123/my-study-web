@@ -9,4 +9,5 @@ export default [
     'http://chartlib.datains.cn',
     'http://datav.jiaminghi.com/guide/',
     'https://echarts.apache.org/zh/index.html',
+    'https://gptgo.ai/?hl=zh&utm_source=futurepedia&&utm_medium=marketplace&&utm_campaign=futurepedia',
 ]
