@@ -126,11 +126,3 @@ export default {
   align-items: center;
 }
 </style>
-rrow {
-  top: 59%;
-}
-/deep/ .el-submenu__title {
-  display: flex;
-  align-items: center;
-}
-</style>
