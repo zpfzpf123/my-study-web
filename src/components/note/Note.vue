@@ -17,6 +17,7 @@ import CssNotes from "@/components/note/cssNotes";
 import VueNotes from "@/components/note/vueNotes";
 import ZujianNotes from "@/components/note/zujianNotes";
 import ai from "@/components/note/ai"
+import uniapp from "@/components/note/uniapp";
 export default {
   name: "Note",
   props: {
@@ -44,7 +45,8 @@ export default {
         'a-Vue': VueNotes,
         'a-css': CssNotes,
         'a-常用组件': ZujianNotes,
-        'a-ai': ai
+        'a-ai': ai,
+        'a-uniapp': uniapp,
       }
       this.Notes = notesMap[val] || JsNotes
       this.$nextTick(() => {

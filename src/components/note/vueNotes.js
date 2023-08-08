@@ -510,5 +510,107 @@ export default [
             "</style>\n" +
             "```\n" +
             "\n"
+    },
+    {
+        name:'4',
+        title:'vue2+Datav实现表格上下无缝滚动',
+        content:"1. 首先需要在vue引入DataV组件 \n" +
+            "   ```js\n" +
+            "   npm install @jiaminghi/data-view\n" +
+            "   ```\n" +
+            "\n" +
+            "   \n" +
+            "\n" +
+            "2. 在main.js注册为全局组件\n" +
+            "   ```js\n" +
+            "   // 将自动注册所有组件为全局组件\n" +
+            "   import dataV from '@jiaminghi/data-view'\n" +
+            "   \n" +
+            "   Vue.use(dataV)\n" +
+            "   ```\n" +
+            "\n" +
+            "3. 使用vue文件代码如下\n" +
+            "   ```vue\n" +
+            "   <template>\n" +
+            "     <div id=\"the-homework-table\">\n" +
+            "       <dv-scroll-board\n" +
+            "         :config=\"config\"\n" +
+            "         style=\"width: 100%; height: 100%\"\n" +
+            "       />\n" +
+            "     </div>\n" +
+            "   </template>\n" +
+            "   \n" +
+            "   <script>\n" +
+            "   export default {\n" +
+            "     data() {\n" +
+            "       return {\n" +
+            "         config: {\n" +
+            "           header: [\n" +
+            "             \"时间\",\n" +
+            "           ],\n" +
+            "           data: [\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "            [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "             [\n" +
+            "               \"2022/11/3 07:45:30\",\n" +
+            "             ],\n" +
+            "           ],\n" +
+            "           index: true,//增加序号显示\n" +
+            "           rowNum: 10,//超过10行启动无缝滚动\n" +
+            "         },\n" +
+            "       };\n" +
+            "     },\n" +
+            "   };\n" +
+            "   </script>\n" +
+            "   \n" +
+            "   <style lang=\"less\" scoped>\n" +
+            "   #the-homework-table {\n" +
+            "     width: 100%;\n" +
+            "     height: 100%;\n" +
+            "   }\n" +
+            "   /deep/ .dv-scroll-board .header {\n" +
+            "     font-size: 25px;\n" +
+            "   }\n" +
+            "   /deep/ .dv-scroll-board .rows .row-item {\n" +
+            "     font-size: 24px;\n" +
+            "   }\n" +
+            "   /deep/ .dv-scroll-board .rows .ceil {\n" +
+            "     text-align: center;\n" +
+            "   }\n" +
+            "   /deep/ .dv-scroll-board .header .header-item {\n" +
+            "     text-align: center;\n" +
+            "   }\n" +
+            "   </style>\n" +
+            "   ```\n" +
+            "\n" +
+            "   "
     }
 ]

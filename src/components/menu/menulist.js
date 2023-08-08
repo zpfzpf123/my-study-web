@@ -276,6 +276,11 @@ export default [
                         index: '11-5',
                         list: 'a-ai'
                     },
+                    {
+                        name: "uniapp",
+                        index: '11-6',
+                        list: 'a-uniapp'
+                    },
                 ]
             },
         ]
