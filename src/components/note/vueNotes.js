@@ -757,6 +757,29 @@ export default [
             "/* 可选的图表容器样式 */\n" +
             "</style>\n" +
             "```\n" +
+            "# 使用组件示例\n" +
+            "\n" +
+            "```js\n" +
+            "<pie-chart\n" +
+            "            :data=\"chartData\"\n" +
+            "            :colors=\"chartColors\"\n" +
+            "            :show-label=\"showLabel\"\n" +
+            "            :label-position=\"labelPosition\"\n" +
+            "            :label-font-size=\"labelFontSize\"\n" +
+            "            :responsive=\"true\"\n" +
+            "            series-name=\"作业统计\"\n" +
+            "          />\n" +
+            "                \n" +
+            "                \n" +
+            "  \t  chartData: [\n" +
+            "        {name:'已完成',val:10},\n" +
+            "        {name:'未完成',val:20},\n" +
+            "      ],\n" +
+            "      chartColors: ['#00BFFF','#FF6B00'],\n" +
+            "      showLabel: true,\n" +
+            "      labelPosition: 'inside',\n" +
+            "      labelFontSize: 14,\n" +
+            "```\n" +
             "\n"
     }
 ]
