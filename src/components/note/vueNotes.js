@@ -612,5 +612,151 @@ export default [
             "   ```\n" +
             "\n" +
             "   "
+    },
+    {
+        name:'5',
+        title:'vue2+echarts封装组件  饼图组件',
+        content:"```js\n" +
+            "<template>\n" +
+            "  <div ref=\"chart\" :style=\"{ height: '100%', width: '100%' }\"></div>\n" +
+            "</template>\n" +
+            "\n" +
+            "<script>\n" +
+            "import echarts from 'echarts';\n" +
+            "\n" +
+            "export default {\n" +
+            "  props: {\n" +
+            "    // 接受数据作为 props\n" +
+            "    data: {\n" +
+            "      type: Array,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "    // 接受颜色作为 props\n" +
+            "    colors: {\n" +
+            "      type: Array,\n" +
+            "      default(){\n" +
+            "        return ['#00BFFF','#FF6B00']\n" +
+            "      }\n" +
+            "    },\n" +
+            "    // 是否显示标签\n" +
+            "    showLabel: {\n" +
+            "      type: Boolean,\n" +
+            "      default: true,\n" +
+            "    },\n" +
+            "    // 标签位置\n" +
+            "    labelPosition: {\n" +
+            "      type: String,\n" +
+            "      default: 'inside',\n" +
+            "    },\n" +
+            "    // 标签字体大小\n" +
+            "    labelFontSize: {\n" +
+            "      type: Number,\n" +
+            "      default: 14,\n" +
+            "    },\n" +
+            "    // 是否自适应\n" +
+            "    responsive: {\n" +
+            "      type: Boolean,\n" +
+            "      default: true,\n" +
+            "    },\n" +
+            "    // series 名称\n" +
+            "    seriesName: {\n" +
+            "      type: String,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "    // 是否显示图例\n" +
+            "    showLegend: {\n" +
+            "      type: Boolean,\n" +
+            "      default: false,\n" +
+            "    },\n" +
+            "    // 图例位置\n" +
+            "    legendPosition: {\n" +
+            "      type: String,\n" +
+            "      default: 'right',\n" +
+            "    },\n" +
+            "  },\n" +
+            "  mounted() {\n" +
+            "    // 渲染图表\n" +
+            "    this.renderChart();\n" +
+            "    // 如果需要自适应，则监听窗口大小变化\n" +
+            "    if (this.responsive) {\n" +
+            "      window.addEventListener('resize', this.renderChart);\n" +
+            "    }\n" +
+            "  },\n" +
+            "  beforeDestroy() {\n" +
+            "    // 如果需要自适应，则在组件销毁前移除监听器\n" +
+            "    if (this.responsive) {\n" +
+            "      window.removeEventListener('resize', this.renderChart);\n" +
+            "    }\n" +
+            "  },\n" +
+            "  methods: {\n" +
+            "    renderChart() {\n" +
+            "      // 初始化 echarts 实例\n" +
+            "      const chart = echarts.init(this.$refs.chart);\n" +
+            "      // 设置图表选项\n" +
+            "      chart.setOption({\n" +
+            "        // 配置提示框\n" +
+            "        tooltip: {\n" +
+            "          trigger: 'item',\n" +
+            "          formatter: '{a} <br/>{b}: {c} ({d}%)',\n" +
+            "        },\n" +
+            "        // 配置图例\n" +
+            "        legend: {\n" +
+            "          show: this.showLegend,\n" +
+            "          orient: this.legendPosition,\n" +
+            "        },\n" +
+            "        // 配置 series\n" +
+            "        series: [\n" +
+            "          {\n" +
+            "            // 设置 series 名称\n" +
+            "            name: this.seriesName,\n" +
+            "            // 设置 series 类型为饼状图\n" +
+            "            type: 'pie',\n" +
+            "            // 设置饼状图半径\n" +
+            "            radius: ['50%', '70%'],\n" +
+            "            // 避免标签重叠\n" +
+            "            avoidLabelOverlap: false,\n" +
+            "            // 配置标签\n" +
+            "            label: {\n" +
+            "              show: this.showLabel,\n" +
+            "              position: this.labelPosition,\n" +
+            "              fontSize: this.labelFontSize,\n" +
+            "            },\n" +
+            "            // 配置标签强调样式\n" +
+            "            emphasis: {\n" +
+            "              label: {\n" +
+            "                show: true,\n" +
+            "                fontSize: this.labelFontSize + 2,\n" +
+            "                fontWeight: 'bold',\n" +
+            "              },\n" +
+            "            },\n" +
+            "            // 配置标签线\n" +
+            "            labelLine: {\n" +
+            "              show: false,\n" +
+            "            },\n" +
+            "            // 配置数据\n" +
+            "            data: this.data.map((item, index) => ({\n" +
+            "              value: item.val,\n" +
+            "              name: item.name,\n" +
+            "              itemStyle: {\n" +
+            "                color: this.colors[index],\n" +
+            "              },\n" +
+            "            })),\n" +
+            "          },\n" +
+            "        ],\n" +
+            "      });\n" +
+            "      // 如果需要自适应，则在渲染后调整图表大小\n" +
+            "      if (this.responsive) {\n" +
+            "        chart.resize();\n" +
+            "      }\n" +
+            "    },\n" +
+            "  },\n" +
+            "};\n" +
+            "</script>\n" +
+            "\n" +
+            "<style>\n" +
+            "/* 可选的图表容器样式 */\n" +
+            "</style>\n" +
+            "```\n" +
+            "\n"
     }
 ]
