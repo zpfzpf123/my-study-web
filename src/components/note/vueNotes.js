@@ -784,7 +784,7 @@ export default [
     },{
         name:'6',
         title:'vue2+echarts封装组件  柱状图组件',
-        content:"```vue\n" +
+        content:"```js\n" +
             "<template>\n" +
             "  <div ref=\"chart\" style=\"width: 100%; height: 100%\"></div>\n" +
             "</template>\n" +
