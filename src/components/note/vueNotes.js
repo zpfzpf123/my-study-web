@@ -781,5 +781,202 @@ export default [
             "      labelFontSize: 14,\n" +
             "```\n" +
             "\n"
-    }
+    },{
+        name:'6',
+        title:'vue2+echarts封装组件  柱状图组件',
+        content:"```vue\n" +
+            "<template>\n" +
+            "  <div ref=\"chart\" style=\"width: 100%; height: 100%\"></div>\n" +
+            "</template>\n" +
+            "\n" +
+            "<script>\n" +
+            "import echarts from \"echarts\";\n" +
+            "\n" +
+            "export default {\n" +
+            "  props: {\n" +
+            "    //颜色\n" +
+            "    colorList: {\n" +
+            "      type: Array,\n" +
+            "      default: () => {\n" +
+            "        return [\"#00BFFF\", \"#FF6B00\"];\n" +
+            "      },\n" +
+            "    },\n" +
+            "    // 图表标题\n" +
+            "    title: {\n" +
+            "      type: String,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "    // x 轴数据\n" +
+            "    xAxisData: {\n" +
+            "      type: Array,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "    // 数据系列\n" +
+            "    seriesData: {\n" +
+            "      type: Array,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "    // 图例数据\n" +
+            "    legendData: {\n" +
+            "      type: Array,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "    // tooltip 的 crossStyle\n" +
+            "    crossStyle: {\n" +
+            "      type: Object,\n" +
+            "      default: () => {\n" +
+            "        return {\n" +
+            "          color: \"white\",\n" +
+            "        };\n" +
+            "      },\n" +
+            "    },\n" +
+            "    /**\n" +
+            "     * @description:  字体大小列表，依次为：\n" +
+            "    0. 标题字体大小\n" +
+            "     1. 图例字体大小\n" +
+            "    2. x 轴标签字体大小\n" +
+            "     3. y 轴标签字体大小\n" +
+            "     4. 数据标签字体大小\n" +
+            "     5. tooltip 字体大小\n" +
+            "     * @return {*}\n" +
+            "     */\n" +
+            "    fontSizeList: {\n" +
+            "      type: Array,\n" +
+            "      required: true,\n" +
+            "    },\n" +
+            "  },\n" +
+            "  data() {\n" +
+            "    return {\n" +
+            "      chart: null,\n" +
+            "    };\n" +
+            "  },\n" +
+            "  mounted() {\n" +
+            "    // 初始化 echarts 实例\n" +
+            "    this.chart = echarts.init(this.$refs.chart);\n" +
+            "    // 设置图表配置项\n" +
+            "    this.chart.setOption({\n" +
+            "      color:this.colorList,\n" +
+            "      // 图表标题\n" +
+            "      title: {\n" +
+            "        text: this.title,\n" +
+            "        textStyle: {\n" +
+            "          color: \"#fff\",\n" +
+            "          fontSize: this.fontSizeList[0],\n" +
+            "        },\n" +
+            "      },\n" +
+            "      // tooltip\n" +
+            "      tooltip: {\n" +
+            "        trigger: \"axis\",\n" +
+            "        axisPointer: {\n" +
+            "          type: \"cross\",\n" +
+            "          crossStyle: this.crossStyle,\n" +
+            "        },\n" +
+            "        textStyle: {\n" +
+            "          fontSize: this.fontSizeList[5],\n" +
+            "        },\n" +
+            "      },\n" +
+            "      // 图例\n" +
+            "      legend: {\n" +
+            "        data: this.legendData,\n" +
+            "        textStyle: {\n" +
+            "          color: \"#fff\",\n" +
+            "          fontSize: this.fontSizeList[1],\n" +
+            "        },\n" +
+            "      },\n" +
+            "      // x 轴\n" +
+            "      xAxis: [\n" +
+            "        {\n" +
+            "          type: \"category\",\n" +
+            "          data: this.xAxisData,\n" +
+            "          axisPointer: {\n" +
+            "            type: \"shadow\",\n" +
+            "          },\n" +
+            "          axisLabel: {\n" +
+            "            textStyle: {\n" +
+            "              color: \"#fff\",\n" +
+            "              fontSize: this.fontSizeList[2],\n" +
+            "            },\n" +
+            "          },\n" +
+            "          // 去掉 x 轴的分割线\n" +
+            "          splitLine: {\n" +
+            "            show: false,\n" +
+            "          },\n" +
+            "        },\n" +
+            "      ],\n" +
+            "      // y 轴\n" +
+            "      yAxis: [\n" +
+            "        {\n" +
+            "          type: \"value\",\n" +
+            "          axisLabel: {\n" +
+            "            textStyle: {\n" +
+            "              color: \"#fff\",\n" +
+            "              fontSize: this.fontSizeList[3],\n" +
+            "            },\n" +
+            "          },\n" +
+            "          // 去掉 y 轴的分割线\n" +
+            "          splitLine: {\n" +
+            "            show: false,\n" +
+            "          },\n" +
+            "        },\n" +
+            "      ],\n" +
+            "      // 数据系列\n" +
+            "      series: this.seriesData.map((item) => {\n" +
+            "        return {\n" +
+            "          name: item.name,\n" +
+            "          type: \"bar\",\n" +
+            "          data: item.data,\n" +
+            "          label: {\n" +
+            "            show: this.showLabel,\n" +
+            "            position: this.labelPosition,\n" +
+            "            fontSize: this.fontSizeList[4],\n" +
+            "          },\n" +
+            "        };\n" +
+            "      }),\n" +
+            "    });\n" +
+            "    // 监听窗口大小变化，自适应图表大小\n" +
+            "    window.addEventListener(\"resize\", () => {\n" +
+            "      this.chart.resize();\n" +
+            "    });\n" +
+            "  },\n" +
+            "};\n" +
+            "</script>\n" +
+            "```\n" +
+            "\n" +
+            "# 组件使用示例\n" +
+            "\n" +
+            "```js\n" +
+            "<bar-chart\n" +
+            "            :title=\"chartTitle\"\n" +
+            "            :x-axis-data=\"xAxisData\"\n" +
+            "            :series-data=\"seriesData\"\n" +
+            "            :legend-data=\"legendData\"\n" +
+            "            :cross-style=\"crossStyle\"\n" +
+            "            :font-size-list=\"fontSizeList\"\n" +
+            "          />\n" +
+            "  \n" +
+            "data() {\n" +
+            "    return {\n" +
+            "      title: \"人员管理\",\n" +
+            "      chartTitle: \"人员统计\",\n" +
+            "      xAxisData: [\"A\", \"B\", \"C\", \"D\", \"E\"],\n" +
+            "      seriesData: [\n" +
+            "        {\n" +
+            "          name: \"员工数量\",\n" +
+            "          data: [10, 20, 30, 40, 50],\n" +
+            "        },\n" +
+            "        {\n" +
+            "          name: \"访客数量\",\n" +
+            "          data: [20, 30, 40, 50, 60],\n" +
+            "        },\n" +
+            "      ],\n" +
+            "      legendData: [\"员工数量\", \"访客数量\"],\n" +
+            "      crossStyle: {\n" +
+            "        color: \"white\",\n" +
+            "      },\n" +
+            "      fontSizeList: [18, 20, 20, 20, 20, 20],\n" +
+            "    };\n" +
+            "  },\n" +
+            "```\n" +
+            "\n"
+    },
 ]
