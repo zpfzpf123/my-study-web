@@ -793,7 +793,6 @@ export default [
             "  \n" +
             "data() {\n" +
             "    return {\n" +
-            "      title:'作业管理',\n" +
             "      chartData: [\n" +
             "        {name:'已完成',val:10},\n" +
             "        {name:'未完成',val:20},\n" +
