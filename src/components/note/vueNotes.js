@@ -757,7 +757,8 @@ export default [
             "/* 可选的图表容器样式 */\n" +
             "</style>\n" +
             "```\n" +
-            "# 使用组件示例\n" +
+            "\n" +
+            "# 组件使用示例\n" +
             "\n" +
             "```js\n" +
             "<pie-chart\n" +
@@ -768,17 +769,22 @@ export default [
             "            :label-font-size=\"labelFontSize\"\n" +
             "            :responsive=\"true\"\n" +
             "            series-name=\"作业统计\"\n" +
+            "            chartTitle=\"作业统计\"\n" +
             "          />\n" +
-            "                \n" +
-            "                \n" +
-            "  \t  chartData: [\n" +
+            "  \n" +
+            "data() {\n" +
+            "    return {\n" +
+            "      title:'作业管理',\n" +
+            "      chartData: [\n" +
             "        {name:'已完成',val:10},\n" +
             "        {name:'未完成',val:20},\n" +
             "      ],\n" +
             "      chartColors: ['#00BFFF','#FF6B00'],\n" +
             "      showLabel: true,\n" +
             "      labelPosition: 'inside',\n" +
-            "      labelFontSize: 14,\n" +
+            "      labelFontSize: 25,\n" +
+            "    }\n" +
+            "  },\n" +
             "```\n" +
             "\n"
     },{
