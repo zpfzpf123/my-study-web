@@ -622,7 +622,7 @@ export default [
             "</template>\n" +
             "\n" +
             "<script>\n" +
-            "import echarts from 'echarts';\n" +
+            "import echarts from \"echarts\";\n" +
             "\n" +
             "export default {\n" +
             "  props: {\n" +
@@ -634,9 +634,14 @@ export default [
             "    // 接受颜色作为 props\n" +
             "    colors: {\n" +
             "      type: Array,\n" +
-            "      default(){\n" +
-            "        return ['#00BFFF','#FF6B00']\n" +
-            "      }\n" +
+            "      default() {\n" +
+            "        return [\"#00BFFF\", \"#FF6B00\"];\n" +
+            "      },\n" +
+            "    },\n" +
+            "    //标题\n" +
+            "    chartTitle: {\n" +
+            "      type: String,\n" +
+            "      default:''\n" +
             "    },\n" +
             "    // 是否显示标签\n" +
             "    showLabel: {\n" +
@@ -646,7 +651,7 @@ export default [
             "    // 标签位置\n" +
             "    labelPosition: {\n" +
             "      type: String,\n" +
-            "      default: 'inside',\n" +
+            "      default: \"inside\",\n" +
             "    },\n" +
             "    // 标签字体大小\n" +
             "    labelFontSize: {\n" +
@@ -671,21 +676,27 @@ export default [
             "    // 图例位置\n" +
             "    legendPosition: {\n" +
             "      type: String,\n" +
-            "      default: 'right',\n" +
+            "      default: \"right\",\n" +
             "    },\n" +
+            "  },\n" +
+            "  data() {\n" +
+            "    return {\n" +
+            "      // 设置初始高度\n" +
+            "      chartHeight: \"300px\",\n" +
+            "    };\n" +
             "  },\n" +
             "  mounted() {\n" +
             "    // 渲染图表\n" +
             "    this.renderChart();\n" +
             "    // 如果需要自适应，则监听窗口大小变化\n" +
             "    if (this.responsive) {\n" +
-            "      window.addEventListener('resize', this.renderChart);\n" +
+            "      window.addEventListener(\"resize\", this.renderChart);\n" +
             "    }\n" +
             "  },\n" +
             "  beforeDestroy() {\n" +
             "    // 如果需要自适应，则在组件销毁前移除监听器\n" +
             "    if (this.responsive) {\n" +
-            "      window.removeEventListener('resize', this.renderChart);\n" +
+            "      window.removeEventListener(\"resize\", this.renderChart);\n" +
             "    }\n" +
             "  },\n" +
             "  methods: {\n" +
@@ -694,10 +705,18 @@ export default [
             "      const chart = echarts.init(this.$refs.chart);\n" +
             "      // 设置图表选项\n" +
             "      chart.setOption({\n" +
+            "        title: {\n" +
+            "          text: this.chartTitle,\n" +
+            "          left: \"center\",\n" +
+            "          textStyle: {\n" +
+            "            fontSize: 20,\n" +
+            "            color:'white'\n" +
+            "          },\n" +
+            "        },\n" +
             "        // 配置提示框\n" +
             "        tooltip: {\n" +
-            "          trigger: 'item',\n" +
-            "          formatter: '{a} <br/>{b}: {c} ({d}%)',\n" +
+            "          trigger: \"item\",\n" +
+            "          formatter: \"{a} <br/>{b}: {c} ({d}%)\",\n" +
             "        },\n" +
             "        // 配置图例\n" +
             "        legend: {\n" +
@@ -710,9 +729,9 @@ export default [
             "            // 设置 series 名称\n" +
             "            name: this.seriesName,\n" +
             "            // 设置 series 类型为饼状图\n" +
-            "            type: 'pie',\n" +
+            "            type: \"pie\",\n" +
             "            // 设置饼状图半径\n" +
-            "            radius: ['50%', '70%'],\n" +
+            "            radius: [\"50%\", \"70%\"],\n" +
             "            // 避免标签重叠\n" +
             "            avoidLabelOverlap: false,\n" +
             "            // 配置标签\n" +
@@ -726,7 +745,7 @@ export default [
             "              label: {\n" +
             "                show: true,\n" +
             "                fontSize: this.labelFontSize + 2,\n" +
-            "                fontWeight: 'bold',\n" +
+            "                fontWeight: \"bold\",\n" +
             "              },\n" +
             "            },\n" +
             "            // 配置标签线\n" +
