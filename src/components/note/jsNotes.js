@@ -661,7 +661,10 @@ export default [
             'let a = [{ id: 1, name: \'a\' }, { id: 2, name: \'b\' }, { id: 3, name: \'c\' }, { id: 4, name: \'d\' }, { id: 1, name: \'a\' }]\n' +
             'let map = new Map();\n' +
             'for (let item of a) {\n' +
-            '  map.set(item.id + item.name, item);\n' +
+            'let key=Object.values(item).reduce((pre, nex) => {\n'+
+            'return pre+nex\n'+
+        '})\n'+
+        'map.set(key,item)\n'+
             '}\n' +
             '// console.log(map);\n' +
             'a = [...map.values()];\n' +
