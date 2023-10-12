@@ -1003,4 +1003,56 @@ export default [
             "```\n" +
             "\n"
     },
+    {
+        name:'7',
+        title:'vue2播放flv视频流',
+        content:"# 下载flv.js\n" +
+            "\n" +
+            "```js\n" +
+            "npm install --save flv.js\n" +
+            "```\n" +
+            "\n" +
+            "# 代码示例\n" +
+            "\n" +
+            "```js\n" +
+            "<template>\n" +
+            "  <div>\n" +
+            "\t<video id=\"videoElement\" controls autoplay muted width=\"300px\" height=\"200px\">    \n" +
+            "    </video>\n" +
+            "\t<button @click=\"play\">播放</button>\n" +
+            "  </div>\n" +
+            "</template>\n" +
+            "<script>\n" +
+            "    import flvjs from 'flv.js'\n" +
+            "export default {\n" +
+            "  data () {\n" +
+            "    return {\n" +
+            "\t  flvPlayer:null\n" +
+            "    }\n" +
+            "  },\n" +
+            "   mounted() {\n" +
+            "      if (flvjs.isSupported()) {\n" +
+            "        var videoElement = document.getElementById('videoElement');\n" +
+            "        this.flvPlayer = flvjs.createPlayer({\n" +
+            "          type: 'flv',\n" +
+            "\t\t  isLive: true,\n" +
+            "\t\t  hasAudio: false,\n" +
+            "          url: 'http://1011.hlsplay.aodianyun.com/demo/game.flv'\n" +
+            "        });\n" +
+            "        this.flvPlayer.attachMediaElement(videoElement);\n" +
+            "        this.flvPlayer.load();\n" +
+            "\t\tthis.flvPlayer.play();\n" +
+            "      }\n" +
+            "    },\n" +
+            "    methods:{\n" +
+            "      play () {\n" +
+            "        this.flvPlayer.play();\n" +
+            "      }\n" +
+            "    }\n" +
+            "}\n" +
+            "</script>\n" +
+            "\n" +
+            "```\n" +
+            "\n"
+    },
 ]
