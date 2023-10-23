@@ -805,7 +805,8 @@ export default [
             "  },\n" +
             "```\n" +
             "\n"
-    },{
+    },
+    {
         name:'6',
         title:'vue2+echarts封装组件  柱状图组件',
         content:"```js\n" +
@@ -1051,6 +1052,197 @@ export default [
             "    }\n" +
             "}\n" +
             "</script>\n" +
+            "\n" +
+            "```\n" +
+            "\n"
+    },
+    {
+        name:'8',
+        title:'vue+nginx部署',
+        content:"# vue\n" +
+            "\n" +
+            "vue.config.js配置如下\n" +
+            "\n" +
+            "```js\n" +
+            "const {defineConfig} = require('@vue/cli-service')\n" +
+            "module.exports = defineConfig({\n" +
+            "    transpileDependencies: true,\n" +
+            "    //打包\n" +
+            "    publicPath: './',\n" +
+            "    devServer: {\n" +
+            "        host: '0.0.0.0',\n" +
+            "        port: 8080,\n" +
+            "        proxy: {\n" +
+            "            '/captures': {\n" +
+            "                target: 'http://192.168.1.150:18080', // 目标路径，别忘了加http和端口号 也就是接口的前面的ip地址端口号\n" +
+            "                changeOrigin: true, // 是否跨域\n" +
+            "            }\n" +
+            "        }\n" +
+            "    }\n" +
+            "})\n" +
+            " \n" +
+            "```\n" +
+            "\n" +
+            "# nginx\n" +
+            "\n" +
+            "nginx.conf配置如下\n" +
+            "\n" +
+            "```json\n" +
+            "\n" +
+            "user  root;\n" +
+            "worker_processes  1;\n" +
+            "\n" +
+            "#error_log  logs/error.log;\n" +
+            "#error_log  logs/error.log  notice;\n" +
+            "#error_log  logs/error.log  info;\n" +
+            "\n" +
+            "#pid        logs/nginx.pid;\n" +
+            "\n" +
+            "\n" +
+            "events {\n" +
+            "    worker_connections  1024;\n" +
+            "}\n" +
+            "\n" +
+            "\n" +
+            "http {\n" +
+            "    include       mime.types;\n" +
+            "    default_type  application/octet-stream;\n" +
+            "\n" +
+            "    #log_format  main  '$remote_addr - $remote_user [$time_local] \"$request\" '\n" +
+            "    #                  '$status $body_bytes_sent \"$http_referer\" '\n" +
+            "    #                  '\"$http_user_agent\" \"$http_x_forwarded_for\"';\n" +
+            "\n" +
+            "    #access_log  logs/access.log  main;\n" +
+            "\n" +
+            "    sendfile        on;\n" +
+            "    #tcp_nopush     on;\n" +
+            "\n" +
+            "    #keepalive_timeout  0;\n" +
+            "    keepalive_timeout  65;\n" +
+            "\n" +
+            "    #gzip  on;\n" +
+            "\n" +
+            "    server {\n" +
+            "    \t# 服务器端口号\n" +
+            "        listen       80; \n" +
+            "    \t# 服务器名称\n" +
+            "        server_name  localhost;\n" +
+            "\n" +
+            "        #charset koi8-r;\n" +
+            "\n" +
+            "        #access_log  logs/host.access.log  main;\n" +
+            "        location / {\n" +
+            "            root    /zckx/nginx/html/dist; #项目文件位置\n" +
+            "            index  index.html;\n" +
+            "            try_files $uri $uri/ /index.html;\n" +
+            "        }\n" +
+            "\t\t# 配置跨域 比如接口以/captures开头的配置如下\n" +
+            "        location /captures/ {\n" +
+            "            # 允许http://192.168.1.150:18080跨域 http://192.168.1.150:18080为接口地址\n" +
+            "            proxy_pass http://192.168.1.150:18080; \n" +
+            "        }\n" +
+            "\n" +
+            "        location /live{\n" +
+            "            add_header Access-Control-Allow-Origin *;\n" +
+            "            types {\n" +
+            "                application/vnd.apple.mpegurl m3u8;\n" +
+            "                video/mp2t ts;\n" +
+            "            }\n" +
+            "            # HLS切片文件目录\n" +
+            "            alias /tmp/hls;\n" +
+            "            expires -1;\n" +
+            "        }\n" +
+            "\n" +
+            "        #error_page  404              /404.html;\n" +
+            "\n" +
+            "        # redirect server error pages to the static page /50x.html\n" +
+            "        #\n" +
+            "        error_page   500 502 503 504  /50x.html;\n" +
+            "        location = /50x.html {\n" +
+            "            root   html;\n" +
+            "        }\n" +
+            "\n" +
+            "        # proxy the PHP scripts to Apache listening on 127.0.0.1:80\n" +
+            "        #\n" +
+            "        #location ~ \\.php$ {\n" +
+            "        #    proxy_pass   http://127.0.0.1;\n" +
+            "        #}\n" +
+            "\n" +
+            "        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000\n" +
+            "        #\n" +
+            "        #location ~ \\.php$ {\n" +
+            "        #    root           html;\n" +
+            "        #    fastcgi_pass   127.0.0.1:9000;\n" +
+            "        #    fastcgi_index  index.php;\n" +
+            "        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;\n" +
+            "        #    include        fastcgi_params;\n" +
+            "        #}\n" +
+            "\n" +
+            "        # deny access to .htaccess files, if Apache's document root\n" +
+            "        # concurs with nginx's one\n" +
+            "        #\n" +
+            "        #location ~ /\\.ht {\n" +
+            "        #    deny  all;\n" +
+            "        #}\n" +
+            "    }\n" +
+            "\n" +
+            "\n" +
+            "    # another virtual host using mix of IP-, name-, and port-based configuration\n" +
+            "    #\n" +
+            "    #server {\n" +
+            "    #    listen       8000;\n" +
+            "    #    listen       somename:8080;\n" +
+            "    #    server_name  somename  alias  another.alias;\n" +
+            "\n" +
+            "    #    location / {\n" +
+            "    #        root   html;\n" +
+            "    #        index  index.html index.htm;\n" +
+            "    #    }\n" +
+            "    #}\n" +
+            "\n" +
+            "\n" +
+            "    # HTTPS server\n" +
+            "    #\n" +
+            "    #server {\n" +
+            "    #    listen       443 ssl;\n" +
+            "    #    server_name  localhost;\n" +
+            "\n" +
+            "    #    ssl_certificate      cert.pem;\n" +
+            "    #    ssl_certificate_key  cert.key;\n" +
+            "\n" +
+            "    #    ssl_session_cache    shared:SSL:1m;\n" +
+            "    #    ssl_session_timeout  5m;\n" +
+            "\n" +
+            "    #    ssl_ciphers  HIGH:!aNULL:!MD5;\n" +
+            "    #    ssl_prefer_server_ciphers  on;\n" +
+            "\n" +
+            "    #    location / {\n" +
+            "    #        root   html;\n" +
+            "    #        index  index.html index.htm;\n" +
+            "    #    }\n" +
+            "    #}\n" +
+            "\n" +
+            "}\n" +
+            "\n" +
+            "rtmp {\n" +
+            "        server {\n" +
+            "                listen 1935;\n" +
+            "                chunk_size 4096;\n" +
+            "                # vod path\n" +
+            "                application live {\n" +
+            "                        live on;\n" +
+            "                        hls on;\n" +
+            "                        ##HLS切片保存路径\n" +
+            "                        hls_path /tmp/hls;\n" +
+            "                        hls_fragment 4;\n" +
+            "                        hls_playlist_length 30;\n" +
+            "                        record off;\n" +
+            "                }\n" +
+            "        }\n" +
+            "}\n" +
+            "\n" +
+            "\n" +
+            "\n" +
             "\n" +
             "```\n" +
             "\n"
