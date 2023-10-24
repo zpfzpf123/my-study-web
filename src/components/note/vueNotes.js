@@ -1247,4 +1247,60 @@ export default [
             "```\n" +
             "\n"
     },
+    {
+        name:'9',
+        title:'vue二次封装axios',
+        content:"在src创建request文件夹 新建axios.js\n" +
+            "\n" +
+            "```js\n" +
+            "import axios from 'axios';\n" +
+            "import {Message} from 'element-ui';\n" +
+            "// 统一请求路径前缀\n" +
+            "let baseApi = \"/\";\n" +
+            "\n" +
+            "// 超时设定\n" +
+            "axios.defaults.timeout = 20000;\n" +
+            "\n" +
+            "axios.interceptors.request.use(config => {\n" +
+            "    return config;\n" +
+            "}, err => {\n" +
+            "    Message.error('请求超时');\n" +
+            "    return Promise.reject(err);\n" +
+            "});\n" +
+            "\n" +
+            "// http response 拦截器\n" +
+            "axios.interceptors.response.use(response => {\n" +
+            "    return response.data;\n" +
+            "}, (err) => {\n" +
+            "    // 返回状态码不为200时候的错误处理\n" +
+            "    Message.error(err.toString());\n" +
+            "    return Promise.reject(err);\n" +
+            "});\n" +
+            "\n" +
+            "export const getRequest = (url, params) => {\n" +
+            "    return axios({\n" +
+            "        method: 'get',\n" +
+            "        url: `${baseApi}${url}`,\n" +
+            "        params: params,\n" +
+            "    });\n" +
+            "};\n" +
+            "\n" +
+            "export const postRequest = (url, params) => {\n" +
+            "    return axios({\n" +
+            "        method: 'post',\n" +
+            "        url: `${baseApi}${url}`,\n" +
+            "        data: params,\n" +
+            "    });\n" +
+            "};\n" +
+            "\n" +
+            "export const putRequest = (url, params) => {\n" +
+            "    return axios({\n" +
+            "        method: 'put',\n" +
+            "        url: `${baseApi}${url}`,\n" +
+            "        data: params,\n" +
+            "    });\n" +
+            "};\n" +
+            "```\n" +
+            "\n"
+    },
 ]
